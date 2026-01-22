@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <title data-i18n="page_title">نهج | التثقيف الصحي</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="styles_v16_mobile.css"/>
+<link rel="stylesheet" href="./styles_mobile.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Tajawal', sans-serif;
+      background: #FBF7F0;
+    }
+
+    .axis-page {
+      padding: 100px 0 80px;
+    }
+
+    .axis-container{
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 24px; /* مساحة جانبية للراحة */
+    }
+
+    /* ✅ المستطيل الثاني فقط (الصورة + المحتوى) */
+    .axis-content{
+      background: #fff;
+      border: 1px solid rgba(201,162,77,.25);
+      border-radius: 22px;
+
+      /* ✅ الأبيض يتوسع بدون ما يخرب القراءة */
+      width: 100%;
+      max-width: 1500px;
+      margin: 0 auto;
+
+      padding: 70px 70px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.05);
+      color: rgba(43,26,15,.88);
+      font-size: 17px;
+
+      /* ✅ خلي الاتجاه يتبع لغة الصفحة */
+      direction: inherit;
+
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .axis-section{
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      gap: 55px;
+      align-items: start;
+    }
+
+    .axis-content img{
+      width: 100%;
+      max-width: 460px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,.08);
+      border: 2px solid rgba(201,162,77,.2);
+      transition: transform .3s ease, box-shadow .3s ease;
+      object-fit: cover;
+    }
+
+    .axis-content img:hover {
+      transform: scale(1.04);
+      box-shadow: 0 25px 60px rgba(0,0,0,.15);
+    }
+
+    .axis-text {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .axis-content h2 {
+      font-size: 26px;
+      color: #2B1A0F;
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    .axis-content p {
+      margin-bottom: 26px;
+      text-align: justify;
+      line-height: 2.2;
+    }
+
+    .axis-content section {
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .axis-section{
+        grid-template-columns: 1fr;
+        gap: 26px;
+        text-align: center;
+      }
+
+      .axis-content {
+        padding: 45px 20px;
+      }
+
+      .axis-content img {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .axis-text {
+        text-align: justify;
+      }
+    }
+
+    /* Footer style */
+    .nahj-footer {
+      background-color: #2B1A0F;
+      color: #fff;
+      padding: 60px 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .footer-grid h4 {
+      color: #C9A24D;
+      margin-bottom: 15px;
+    }
+
+    .footer-links ul,
+    .footer-contact ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links a,
+    .footer-contact a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* ✅ مسافة الأيقونة تتكيّف تلقائياً مع RTL/LTR */
+    .footer-contact i {
+      margin-inline-end: 8px;
+    }
+
+    .footer-newsletter input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: none;
+    }
+
+    .footer-newsletter button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #C9A24D;
+      color: #2B1A0F;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* ✅ نخفي رسالة النجاح بالبداية */
+    #success {
+      display: none;
+      color: #dfffe7;
+      margin-top: 8px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      font-size: 14px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 20px;
+    }
+
+    /* ✅ زر لغة Premium (أرقى) */
+    .lang-toggle{
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      padding: 9px 14px;
+      border-radius: 999px;
+
+      /* Premium Glass */
+      background: linear-gradient(135deg,
+        rgba(255,255,255,.55),
+        rgba(201,162,77,.12)
+      );
+      border: 1px solid rgba(201,162,77,.38);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+
+      color: #2B1A0F;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: .5px;
+
+      text-decoration: none;
+      cursor: pointer;
+
+      box-shadow:
+        0 10px 20px rgba(0,0,0,.08),
+        inset 0 1px 0 rgba(255,255,255,.6);
+
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .lang-toggle i{
+      font-size: 13px;
+      opacity: .9;
+    }
+
+    .lang-toggle:hover{
+      transform: translateY(-1px);
+      border-color: rgba(201,162,77,.55);
+      box-shadow:
+        0 16px 28px rgba(0,0,0,.12),
+        inset 0 1px 0 rgba(255,255,255,.7);
+    }
+
+    .lang-toggle:active{
+      transform: translateY(0px) scale(.98);
+      box-shadow:
+        0 10px 18px rgba(0,0,0,.10),
+        inset 0 1px 0 rgba(255,255,255,.55);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ====== HEADER ====== -->
+  <header class="main-navbar">
+<div class="container">
+<nav class="navbar">
+<a aria-label="العودة للرئيسية" class="logo logo-link" href="index.html">
+<img alt="شعار نهج" src="picnahj.png"/>
+<div class="logo-tagline">
+<span class="logo-line1" data-i18n="logo_line1">نهج للتدريب والتثقيف الصحي</span>
+<span aria-hidden="true" class="logo-midline"></span>
+<span class="logo-line2" data-i18n="logo_line2">لخدمات الأعمال</span>
+</div>
+</a>
+
+        <button class="nav-toggle-btn" type="button" aria-label="فتح القائمة" aria-expanded="false">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <ul class="nav-links">
+<li><a data-i18n="nav_about" href="index.html#about">عن نهج</a></li>
+<li><a data-i18n="nav_services" href="index.html#services">خدماتنا</a></li>
+<li class="nav-dropdown">
+<button aria-expanded="false" aria-haspopup="true" class="nav-dropbtn" type="button"><span data-i18n="nav_axes">محاورنا</span> <i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+<div aria-label="قائمة محاور نهج" class="nav-dropdown-menu" role="menu">
+<div class="nav-dropdown-title" data-i18n="axes_menu_title">محاور نهج الأساسية</div>
+<a data-i18n="axis_training" href="tr12.html" role="menuitem">التدريب والتطوير</a>
+<a data-i18n="axis_health" href="hel1.html" role="menuitem">التثقيف الصحي</a>
+<a data-i18n="axis_accredit" href="gr1.html" role="menuitem">الاعتمادات والشهادات</a>
+<a data-i18n="axis_consult" href="con1.html" role="menuitem">الاستشارات</a>
+<a data-i18n="axis_projects" href="pro1.html" role="menuitem">إدارة المشاريع</a>
+</div>
+</li>
+<li><a data-i18n="nav_partners" href="index.html#partners">شركاؤنا</a></li>
+<li><a data-i18n="nav_contact" href="contactll.html">تواصل معنا</a></li>
+</ul>
+<div class="extras">
+<!-- ✅ انضم كمدرب (Google Form) -->
+<a class="join-trainer" href="https://docs.google.com/forms/d/1YNvaM5DN7d3XdPBIm4qTIjkl8ZUjpSNucPohAw5igo4/edit?pli=1" rel="noopener" target="_blank">
+<i class="fa-solid fa-chalkboard-user join-trainer-icon" aria-hidden="true"></i>
+<span data-i18n="join_trainer">انضم كمدرب</span>
+</a>
+<!-- زر اللغة (موجود مسبقًا) -->
+<a class="lang-toggle" href="#">EN</a>
+</div>
+</nav>
+</div>
+</header>
+
+  <!-- ====== MAIN CONTENT ====== -->
+  <main class="axis-page">
+    <div class="axis-container">
+
+      <div class="axis-content">
+        <div class="axis-section">
+          <img
+            src="Ultra_realistic_health_educati_Nano_Banana_Pro_80566.jpg"
+            alt="جلسة تثقيف صحي تفاعلية"
+            data-i18n-alt="main_image_alt"
+          />
+
+          <div class="axis-text">
+
+            <section>
+              <h2 data-i18n="sec1_title">رسالتنا في التثقيف الصحي</h2>
+              <p data-i18n="sec1_p">
+                نؤمن بأن التثقيف الصحي هو حجر الأساس في بناء مجتمع صحي واعٍ.
+                لذلك نعمل على تطوير محتوى توعوي تفاعلي يستند إلى أحدث المعايير العلمية،
+                مع مراعاة الفروقات الثقافية والاجتماعية للفئات المستهدفة.
+              </p>
+            </section>
+
+            <section>
+              <h2 data-i18n="sec2_title">برامجنا ومبادراتنا</h2>
+              <p data-i18n="sec2_p">
+                نقدم برامج ومبادرات توعوية متخصصة تشمل الحملات الصحية، وورش العمل،
+                والمحاضرات التفاعلية التي تستهدف رفع مستوى الوعي الصحي في مختلف المجالات.
+              </p>
+            </section>
+
+            <section>
+              <h2 data-i18n="sec3_title">أثر التثقيف الصحي</h2>
+              <p data-i18n="sec3_p">
+                نحرص على قياس الأثر المجتمعي لجميع البرامج التي نقدمها من خلال أدوات تقييم دقيقة،
+                بهدف تحسين جودة المخرجات وضمان استدامة التغيير الإيجابي في سلوك الأفراد والمجتمعات.
+              </p>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ====== FOOTER ====== -->
+  <a aria-label="تواصل عبر واتساب" class="whatsapp-float" href="https://wa.me/966562397691" target="_blank">
+<i aria-hidden="true" class="fab fa-whatsapp"></i>
+<span aria-hidden="true" class="wa-number">+966 56 239 7691</span>
+</a>
+<!-- FOOTER -->
+<footer class="nahj-footer" id="contact">
+<div class="footer-grid">
+<div>
+<h4 data-i18n="footer_about">عن نهج</h4>
+<p data-i18n="footer_about_text">
+        شركة نهج للتدريب والتثقيف الصحي، نسعى إلى تمكين الأفراد
+        وتطوير بيئات العمل من خلال برامج تدريبية وتوعوية
+        احترافية ذات أثر مستدام.
+      </p>
+</div>
+<div class="footer-links">
+<h4 data-i18n="footer_links">روابط مهمة</h4>
+<ul>
+<li><a data-i18n="footer_link_about" href="index.html#about">عن نهج</a></li><li><a data-i18n="footer_link_contact" href="contactll.html">تواصل معنا</a></li>
+<li><a class="footer-join-link" data-i18n="footer_link_join" href="https://docs.google.com/forms/d/1YNvaM5DN7d3XdPBIm4qTIjkl8ZUjpSNucPohAw5igo4/edit?pli=1" rel="noopener" target="_blank">انضم كمدرب</a></li>
+</ul>
+</div>
+<div class="footer-links">
+<h4 data-i18n="footer_map">خريطة الموقع</h4>
+<ul>
+<li><a data-i18n="footer_map_services" href="index.html#services">البرامج التدريبية</a></li>
+<li><a data-i18n="footer_map_axes" href="index.html#axes">محاور نهج</a></li>
+<li><a data-i18n="footer_map_partners" href="index.html#partners">شركاؤنا</a></li>
+<li><a data-i18n="footer_map_consult" href="#">الاستشارات</a></li>
+</ul>
+</div>
+<div class="footer-contact">
+<h4 data-i18n="footer_contact">تواصل معنا</h4>
+<ul class="contact-list">
+<li>
+<i class="fab fa-whatsapp"></i>
+<a href="https://wa.me/966562397691">966562397691</a>
+</li>
+<li>
+<i class="fas fa-phone"></i>
+<a href="tel:966112275900">966112275900</a>
+</li>
+<li>
+<i class="far fa-envelope"></i>
+<a href="mailto:info@nahjaccred.com">info@nahjaccred.com</a>
+</li>
+</ul>
+</div>
+<div class="footer-newsletter">
+<h4 data-i18n="footer_newsletter">ليصلك كل جديد</h4>
+<p data-i18n="footer_newsletter_desc">اشترك في النشرة البريدية ليصلك كل جديد</p>
+<form id="newsletter-form">
+<input aria-label="البريد الإلكتروني" data-i18n-placeholder="newsletter_placeholder" name="email" placeholder="أدخل بريدك الإلكتروني" required="" type="email"/>
+<!-- EmailJS template uses {{message}} too, so we provide a default hidden value -->
+<input name="message" type="hidden" value="اشتراك جديد في النشرة البريدية من موقع نهج"/>
+<button data-i18n="newsletter_send" type="submit">إرسال</button>
+<div class="u19-2e0cdb" data-i18n="newsletter_success" id="success">
+          تم الإرسال بنجاح ✅
+        </div>
+<div class="u19-2e0cdb" data-i18n="newsletter_error" id="error" style="display:none;color:#ffd0d0;">
+          ❌ حدث خطأ أثناء الإرسال، جرّب مرة أخرى
+        </div>
+</form>
+</div>
+</div>
+<div class="footer-bottom" data-i18n="footer_bottom">
+    © جميع الحقوق محفوظة – شركة نهج للتدريب والتثقيف الصحي
+  </div>
+</footer>
+
+  <!-- ✅ ترجمة + تبديل اتجاه الصفحة -->
+  <script>
+/* TRANSLATIONS + LTR/RTL (matches index header/footer) */
+
+const translations = {
+  ar: {
+    page_title: "نهج | التثقيف الصحي",
+
+    /* Header (same keys as index) */
+    logo_line1: "نهج للتدريب والتثقيف الصحي",
+    logo_line2: "لخدمات الأعمال",
+
+    nav_about: "عن نهج",
+    nav_services: "خدماتنا",
+    nav_axes: "محاورنا",
+    axes_menu_title: "محاور نهج الأساسية",
+    axis_training: "التدريب والتطوير",
+    axis_health: "التثقيف الصحي",
+    axis_accredit: "الاعتمادات والشهادات",
+    axis_consult: "الاستشارات",
+    axis_projects: "إدارة المشاريع",
+    nav_partners: "شركاؤنا",
+    nav_contact: "تواصل معنا",
+    join_trainer: "انضم كمدرب",
+
+    /* Page content */
+    main_image_alt: "جلسة تثقيف صحي تفاعلية",
+    sec1_title: "رسالتنا في التثقيف الصحي",
+    sec1_p:
+      "نؤمن بأن التثقيف الصحي هو حجر الأساس في بناء مجتمع صحي واعٍ. لذلك نعمل على تطوير محتوى توعوي تفاعلي يستند إلى أحدث المعايير العلمية، مع مراعاة الفروقات الثقافية والاجتماعية للفئات المستهدفة.",
+    sec2_title: "برامجنا ومبادراتنا",
+    sec2_p:
+      "نقدم برامج ومبادرات توعوية متخصصة تشمل الحملات الصحية، وورش العمل، والمحاضرات التفاعلية التي تستهدف رفع مستوى الوعي الصحي في مختلف المجالات.",
+    sec3_title: "أثر التثقيف الصحي",
+    sec3_p:
+      "نحرص على قياس الأثر المجتمعي لجميع البرامج التي نقدمها من خلال أدوات تقييم دقيقة، بهدف تحسين جودة المخرجات وضمان استدامة التغيير الإيجابي في سلوك الأفراد والمجتمعات.",
+
+    /* Footer (same keys as index) */
+    footer_about: "عن نهج",
+    footer_about_text:
+      "شركة نهج للتدريب والتثقيف الصحي، نسعى إلى تمكين الأفراد وتطوير بيئات العمل من خلال برامج تدريبية وتوعوية احترافية ذات أثر مستدام.",
+    footer_links: "روابط مهمة",
+    footer_link_about: "عن نهج",
+    footer_link_contact: "تواصل معنا",
+    footer_link_join: "انضم كمدرب",
+
+    footer_map: "خريطة الموقع",
+    footer_map_services: "البرامج التدريبية",
+    footer_map_axes: "محاور نهج",
+    footer_map_partners: "شركاؤنا",
+    footer_map_consult: "الاستشارات",
+
+    footer_contact: "تواصل معنا",
+    footer_newsletter: "ليصلك كل جديد",
+    footer_newsletter_desc: "اشترك في النشرة البريدية ليصلك كل جديد",
+    newsletter_placeholder: "أدخل بريدك الإلكتروني",
+    newsletter_send: "إرسال",
+    newsletter_success: "تم الإرسال بنجاح ✅",
+    newsletter_error: "❌ حدث خطأ أثناء الإرسال، جرّب مرة أخرى",
+
+    footer_bottom: "© جميع الحقوق محفوظة – شركة نهج للتدريب والتثقيف الصحي"
+  },
+
+  en: {
+    page_title: "Nahj | Health Education",
+
+    /* Header */
+    logo_line1: "Nahj Training & Health Education",
+    logo_line2: "Business Services",
+
+    nav_about: "About Nahj",
+    nav_services: "Services",
+    nav_axes: "Our Axes",
+    axes_menu_title: "Nahj Main Axes",
+    axis_training: "Training & Development",
+    axis_health: "Health Education",
+    axis_accredit: "Accreditations & Certifications",
+    axis_consult: "Consulting",
+    axis_projects: "Project Management",
+    nav_partners: "Partners",
+    nav_contact: "Contact",
+    join_trainer: "Join as Trainer",
+
+    /* Page content */
+    main_image_alt: "Interactive health education session",
+    sec1_title: "Our Mission in Health Education",
+    sec1_p:
+      "We believe health education is the cornerstone of building an aware and healthy society. We create engaging, evidence-based awareness content while respecting cultural and social differences across target audiences.",
+    sec2_title: "Our Programs & Initiatives",
+    sec2_p:
+      "We deliver specialized awareness programs and initiatives, including health campaigns, workshops, and interactive lectures designed to raise public health awareness across key topics.",
+    sec3_title: "The Impact of Health Education",
+    sec3_p:
+      "We measure the societal impact of our programs through accurate evaluation tools to enhance outcomes and ensure sustainable positive behavioral change within individuals and communities.",
+
+    /* Footer */
+    footer_about: "About Nahj",
+    footer_about_text:
+      "Nahj Training & Health Education Company empowers individuals and improves workplaces through professional training and awareness programs with sustainable impact.",
+    footer_links: "Quick Links",
+    footer_link_about: "About Nahj",
+    footer_link_contact: "Contact",
+    footer_link_join: "Join as Trainer",
+
+    footer_map: "Sitemap",
+    footer_map_services: "Training Programs",
+    footer_map_axes: "Nahj Axes",
+    footer_map_partners: "Partners",
+    footer_map_consult: "Consulting",
+
+    footer_contact: "Contact Us",
+    footer_newsletter: "Stay Updated",
+    footer_newsletter_desc: "Subscribe to our newsletter to receive the latest updates",
+    newsletter_placeholder: "Enter your email address",
+    newsletter_send: "Send",
+    newsletter_success: "Sent successfully ✅",
+    newsletter_error: "❌ Something went wrong. Please try again.",
+
+    footer_bottom: "© All rights reserved – Nahj Training & Health Education Company"
+  }
+};
+
+function applyLang(lang) {
+  const t = translations[lang] || translations.ar;
+
+  // Language + direction
+  document.documentElement.lang = lang;
+  document.documentElement.dir = (lang === "en") ? "ltr" : "rtl";
+
+  // Text content
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (t[key]) el.textContent = t[key];
+  });
+
+  // Placeholders
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    if (t[key]) el.setAttribute("placeholder", t[key]);
+  });
+
+  // Alt
+  document.querySelectorAll("[data-i18n-alt]").forEach(el => {
+    const key = el.getAttribute("data-i18n-alt");
+    if (t[key]) el.setAttribute("alt", t[key]);
+  });
+
+  // Language button label (same as index: EN / AR)
+  const langBtn = document.querySelector(".lang-toggle");
+  if (langBtn) langBtn.textContent = (lang === "en") ? "AR" : "EN";
+
+  localStorage.setItem("site_lang", lang);
+}
+
+// Toggle language
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".lang-toggle");
+  if (!btn) return;
+  e.preventDefault();
+  const current = localStorage.getItem("site_lang") || "ar";
+  applyLang(current === "ar" ? "en" : "ar");
+});
+
+// Default start Arabic (مثل ما طلبتي)
+(function initLang(){
+  applyLang("ar");
+  localStorage.setItem("site_lang", "ar");
+})();
+
+</script>
+<script defer src="./script_mobile.js"></script>
+</body>
+</html>
