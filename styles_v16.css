@@ -3844,3 +3844,97 @@ html[dir="ltr"] .footer-column a{
   }
 
 }
+/* زر "انضم كمدرب" في قائمة الروابط */
+.join-trainer-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* أخفي الزر الأصلي في extras */
+  .extras .join-trainer {
+    display: none !important;
+  }
+
+  /* أظهر زر الجوال داخل القائمة */
+  .join-trainer-mobile {
+    display: inline-block;
+  }
+
+  /* ترتيب عناصر .nav-links بشكل أفقي (صف واحد) */
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* أو space-between حسب الحاجة */
+    gap: 12px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .nav-links li {
+    display: inline-block;
+  }
+}
+
+
+@media(max-width: 768px){
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* أقصى يمين ويسار */
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    overflow: visible;
+  }
+
+  .extras {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .join-trainer {
+    margin-right: auto; /* يدفعه إلى أقصى يسار */
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--nahj-white);
+    font-size: 13px;
+    text-decoration: none;
+  }
+
+  .join-trainer-icon {
+    font-size: 14px;
+    opacity: 0.9;
+  }
+
+  /* زر اللغة يظل ثابت */
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    color: #fff;
+    font-size: 13px;
+  }
+
+  /* الشعار ومحاذاته */
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
