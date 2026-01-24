@@ -4032,3 +4032,25 @@ html[dir="ltr"] .footer-column a{
     font-size: 13px !important;
   }
 }
+
+
+@media (max-width: 520px) {
+  .nav-links {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px 14px !important;
+  }
+
+  .nav-links li {
+    max-width: 100%;
+  }
+
+  .nav-links a {
+    font-size: 13px !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    text-align: center;
+    padding: 4px 6px !important;
+    display: inline-block;
+  }
+}
