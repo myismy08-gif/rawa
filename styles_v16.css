@@ -3930,6 +3930,9 @@ html[dir="ltr"] .footer-column a{
     color: #fff;
     font-size: 13px;
   }
+  .join-trainer-mobile .join-trainer-icon{
+    display: none !important;
+  }
 
   /* الشعار ومحاذاته */
   .logo-link {
@@ -3937,4 +3940,72 @@ html[dir="ltr"] .footer-column a{
     align-items: center;
     gap: 8px;
   }
+  .nav-links li:last-child{
+    margin-right: 25px;
+  
+  }
 }
+
+
+@media (max-width: 820px){
+
+  /* ✅ خلي الهيدر بعرض الشاشة بالكامل (بدون انكماش يمين/يسار) */
+  .main-navbar .container{
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 10px !important;
+  }
+
+  /* ✅ رجّعي المنيو صف واحد أفقي */
+  .nav-links{
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;         /* ✅ ممنوع ينزل سطر ثاني */
+    justify-content: flex-start !important; /* ✅ يبدأ من اليمين في RTL */
+    align-items: center !important;
+    gap: 10px !important;                 /* ✅ مسافة مريحة بدون زحمة */
+
+    overflow-x: auto !important;          /* ✅ لو ماكفت الشاشة يصير سحب يمين/يسار */
+    white-space: nowrap !important;
+    padding: 10px 6px 10px 14px !important; /* top right bottom left */
+  }
+
+  /* ✅ خلي كل عنصر ما يكبر ويكسر الصف */
+  .nav-links > li{
+    flex: 0 0 auto !important;
+    width: auto !important;
+    margin: 0 !important;
+  }
+
+  /* ✅ شكل الروابط داخل الصف */
+  .nav-links a,
+  .nav-links .nav-dropbtn{
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 8px 10px !important;
+    font-size: 13px !important;
+    border-radius: 12px !important;
+    white-space: nowrap !important;
+  }
+
+  /* ✅ انضم كمدرب يصير داخل نفس الصف */
+  .join-trainer-mobile{
+    grid-column: auto !important; /* يلغي تأثير grid القديم */
+  }
+
+  /* ✅ اختياري: نخفي أيقونة انضم كمدرب بالجوال */
+  .join-trainer-mobile .join-trainer-icon{
+    display:none !important;
+  }
+
+  /* ✅ تحسين سحب الصف (بدون شكل سكرول مزعج) */
+  .nav-links::-webkit-scrollbar{
+    height: 0;
+  }
+}
+
+
+/* ✅ تعطيل حركة شعارات الشركاء (ثابت بدون تحريك) */
+.logos-track{animation:none !important; transform:none !important;}
