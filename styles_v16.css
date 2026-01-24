@@ -3781,3 +3781,1153 @@ html[dir="ltr"] .footer-column a{
   font-size: 14px;
   opacity: .9;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .logo-link {
+    display: flex;
+    flex-direction: row; /* ✅ النص يمين اللوقو */
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-start;
+  }
+
+  .logo-img {
+    height: 42px;
+    width: auto;
+  }
+
+  .logo-tagline {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    line-height: 1.4;
+  }
+
+  .logo-line1 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .logo-line2 {
+    font-size: 12px;
+    color: #f0e4c0;
+  }
+
+  .logo-midline {
+    display: none;
+  }
+    .lang-toggle {
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    z-index: 999;
+  }
+
+  .main-navbar {
+    position: relative;
+  }
+
+}
+/* زر "انضم كمدرب" في قائمة الروابط */
+.join-trainer-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* أخفي الزر الأصلي في extras */
+  .extras .join-trainer {
+    display: none !important;
+  }
+
+  /* أظهر زر الجوال داخل القائمة */
+  .join-trainer-mobile {
+    display: inline-block;
+  }
+
+  /* ترتيب عناصر .nav-links بشكل أفقي (صف واحد) */
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* أو space-between حسب الحاجة */
+    gap: 12px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .nav-links li {
+    display: inline-block;
+  }
+}
+
+
+@media(max-width: 768px){
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* أقصى يمين ويسار */
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    overflow: visible;
+  }
+
+  .extras {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .join-trainer {
+    margin-right: auto; /* يدفعه إلى أقصى يسار */
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--nahj-white);
+    font-size: 13px;
+    text-decoration: none;
+  }
+
+  .join-trainer-icon {
+    font-size: 14px;
+    opacity: 0.9;
+  }
+
+  /* زر اللغة يظل ثابت */
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    color: #fff;
+    font-size: 13px;
+  }
+  .join-trainer-mobile .join-trainer-icon{
+    display: none !important;
+  }
+
+  /* الشعار ومحاذاته */
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav-links li:last-child{
+    margin-right: 25px;
+  
+  }
+}
+
+
+@media (max-width: 820px){
+
+  /* ✅ خلي الهيدر بعرض الشاشة بالكامل (بدون انكماش يمين/يسار) */
+  .main-navbar .container{
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 10px !important;
+  }
+
+  /* ✅ رجّعي المنيو صف واحد أفقي */
+  .nav-links{
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;         /* ✅ ممنوع ينزل سطر ثاني */
+    justify-content: flex-start !important; /* ✅ يبدأ من اليمين في RTL */
+    align-items: center !important;
+    gap: 10px !important;                 /* ✅ مسافة مريحة بدون زحمة */
+
+    overflow-x: auto !important;          /* ✅ لو ماكفت الشاشة يصير سحب يمين/يسار */
+    white-space: nowrap !important;
+    padding: 10px 6px 10px 14px !important; /* top right bottom left */
+  }
+
+  /* ✅ خلي كل عنصر ما يكبر ويكسر الصف */
+  .nav-links > li{
+    flex: 0 0 auto !important;
+    width: auto !important;
+    margin: 0 !important;
+  }
+
+  /* ✅ شكل الروابط داخل الصف */
+  .nav-links a,
+  .nav-links .nav-dropbtn{
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 8px 10px !important;
+    font-size: 13px !important;
+    border-radius: 12px !important;
+    white-space: nowrap !important;
+  }
+
+  /* ✅ انضم كمدرب يصير داخل نفس الصف */
+  .join-trainer-mobile{
+    grid-column: auto !important; /* يلغي تأثير grid القديم */
+  }
+
+  /* ✅ اختياري: نخفي أيقونة انضم كمدرب بالجوال */
+  .join-trainer-mobile .join-trainer-icon{
+    display:none !important;
+  }
+
+  /* ✅ تحسين سحب الصف (بدون شكل سكرول مزعج) */
+  .nav-links::-webkit-scrollbar{
+    height: 0;
+  }
+}
+
+
+
+@media (max-width: 520px) {
+  .main-navbar {
+    padding: 4px 0 !important;
+    background: var(--nahj-brown-dark) !important;
+  }
+
+  .navbar {
+    gap: 4px !important;
+  }
+
+  .nav-links {
+    gap: 8px !important;
+    justify-content: center !important;
+  }
+
+  .nav-links a {
+    font-size: 13px !important;
+    padding: 2px 0 !important;
+  }
+
+  .extras a {
+    font-size: 13px !important;
+  }
+}
+
+
+@media (max-width: 520px) {
+  .nav-links {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px 14px !important;
+  }
+
+  .nav-links li {
+    max-width: 100%;
+  }
+
+  .nav-links a {
+    font-size: 13px !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    text-align: center;
+    padding: 4px 6px !important;
+    display: inline-block;
+  }
+}
+
+
+
+@media (max-width: 520px) {
+  .nahj-about-wrapper .u8-925592 {
+    flex-direction: column !important;
+  }
+
+  .nahj-about-wrapper .u12-34c686 > div {
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(1)::before {
+    content: "--- من نحن";
+    display: block;
+    font-size: 16px;
+    color: var(--accent);
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(2)::before {
+    content: "--- رؤيتنا";
+    display: block;
+    font-size: 16px;
+    color: var(--accent);
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .nahj-about-wrapper .u12-34c686 h2 {
+    display: none; /* نخفي العنوان لأننا أضفناه في ::before */
+  }
+
+  .nahj-about-wrapper .u12-34c686 p {
+    text-align: right;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.9;
+  }
+}
+
+
+
+@media (max-width: 520px) {
+  /* إخفاء تصميم سطح المكتب للجوال */
+  .nahj-about-wrapper .u9-b05138 {
+    display: none !important;
+  }
+
+  .nahj-about-wrapper .u13-cdf92a {
+    display: none !important; /* هذا العنوان كان يكرر "من نحن" */
+  }
+}
+
+
+
+@media (max-width: 520px) {
+  /* إخفاء العناوين الجانبية العمودية فقط */
+  .nahj-about-wrapper .u9-b05138 {
+    display: none !important;
+  }
+
+  /* نظهر عنوان h2 داخل المحتوى */
+  .nahj-about-wrapper .u13-cdf92a {
+    display: block !important;
+    font-size: 18px;
+    color: var(--text);
+    font-weight: bold;
+    margin-bottom: 12px;
+    text-align: right;
+  }
+
+  /* محتوى الفقرات */
+  .nahj-about-wrapper .u12-34c686 p {
+    text-align: right;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.9;
+  }
+
+  /* عنوان خط --- */
+  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(1)::before {
+    content: "--- من نحن";
+    display: block;
+    font-size: 16px;
+    color: var(--accent);
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(2)::before {
+    content: "--- رؤيتنا";
+    display: block;
+    font-size: 16px;
+    color: var(--accent);
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+}
+
+
+
+/* إخفاء عناصر سطح المكتب في الجوال */
+@media (max-width: 768px) {
+  .nahj-about-wrapper .u9-b05138 {
+    display: none;
+  }
+  
+  .nahj-about-wrapper .u12-34c686 {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  .nahj-about-wrapper .u13-cdf92a {
+    font-size: 1.5rem;
+    color: #000; /* إعادة اللون الأسود للعناوين */
+  }
+
+  .nahj-about-wrapper .u14-de1c02,
+  .nahj-about-wrapper .u15-c04822 {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #333; /* لون مناسب للنص */
+  }
+}
+
+
+
+/* ✅ MOBILE FIX: شركاؤنا (النص فوق + الشريط تحت) */
+@media (max-width: 980px){
+
+  .partners-container{
+    display: flex !important;
+    flex-direction: column !important; /* النص فوق - الشريط تحت */
+    gap: 22px !important;
+    padding: 0 22px !important;
+    text-align: center !important;
+  }
+
+  .partners-text{
+    order: 1 !important;
+    text-align: center !important;
+
+    /* ✅ مهم: إلغاء تحريك النص بالجوال */
+    transform: none !important;
+    --text-shift-x: 0px;
+    --text-shift-y: 0px;
+  }
+
+  .logos-wrapper{
+    order: 2 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+}
+
+
+
+
+
+/* ✅ MOBILE FIX + تنسيق النص: شركاؤنا (النص فوق + الشريط تحت) */
+@media (max-width: 980px){
+
+  .partners-container{
+    display: flex !important;
+    flex-direction: column !important; /* النص فوق - الشريط تحت */
+    gap: 22px !important;
+    padding: 0 22px !important;
+    text-align: center !important;
+  }
+
+  .partners-text{
+    order: 1 !important;
+    text-align: center !important;
+
+    /* ✅ مهم: إلغاء تحريك النص بالجوال */
+    transform: none !important;
+    --text-shift-x: 0px !important;
+    --text-shift-y: 0px !important;
+
+    /* ✅ تحسين شكل النص */
+    max-width: 100% !important;
+    padding: 0 10px !important;
+    margin: 0 auto !important;
+  }
+
+  .partners-text h2{
+    font-weight: 800 !important;
+    line-height: 1.6 !important;
+    font-size: 26px !important;
+    margin: 0 0 10px 0 !important;
+    letter-spacing: -0.2px !important;
+  }
+
+  .partners-text a{
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    text-decoration: none !important;
+
+    padding-bottom: 5px !important;
+    border-bottom: 1px solid rgba(201,162,77,0.55) !important;
+    transition: 0.2s ease !important;
+  }
+
+  .partners-text a:hover{
+    opacity: 0.85 !important;
+  }
+
+  .logos-wrapper{
+    order: 2 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+}
+
+
+
+/* ✅ Fix عنوان الفرعي تحت الخط المتموّج (Mobile) */
+@media (max-width: 980px){
+
+  /* العنوان الرئيسي */
+  .section-title,
+  .projects-title,
+  .pm-title{
+    margin-bottom: 18px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* الخط/المنحنى (الديفايدر) */
+  .wave-divider,
+  .section-divider,
+  .curved-line{
+    margin: 10px auto 18px auto !important;
+  }
+
+  /* النص اللي تحت الخط (التطبيقات...) */
+  .section-subtitle,
+  .projects-subtitle,
+  .pm-subtitle{
+    position: relative !important;
+    transform: none !important;
+    top: auto !important;
+    bottom: auto !important;
+
+    display: block !important;
+    text-align: center !important;
+
+    margin-top: 10px !important;
+    padding: 0 16px !important;
+
+    font-size: 18px !important;
+    font-weight: 800 !important;
+    line-height: 1.7 !important;
+
+    white-space: normal !important;   /* يمنع التكدس */
+    z-index: 2 !important;
+  }
+}
+
+
+/* ✅ تحكم بمكان "التحضير" بالجوال فقط */
+@media (max-width: 980px){
+
+  #label-prep{
+    display: inline-block !important; 
+    position: relative !important;
+
+    /* ✨ غيّري الأرقام براحتك */
+    transform: translate(100px, -60px) !important; 
+    /* مثال:
+       translate(20px, 10px) = يمين + تحت
+       translate(-20px, -10px) = يسار + فوق
+    */
+  }
+
+}
+
+
+/* ✅ تحكم بمكان "التشغيل" بالجوال فقط */
+@media (max-width: 980px){
+
+  #label-ops{
+    display: inline-block !important;
+    position: relative !important;
+
+    /* ✨ غيّري الأرقام براحتك */
+    transform: translate(20px, -50px) !important;
+    /* مثال:
+       translate(20px, 10px) = يمين + تحت
+       translate(-20px, -10px) = يسار + فوق
+    */
+  }
+
+}
+
+
+/* ✅ تحكم بمكان "المخرجات" بالجوال فقط */
+@media (max-width: 980px){
+
+  #label-output{
+    display: inline-block !important;
+    position: relative !important;
+
+    /* ✨ غيّري الأرقام براحتك */
+    transform: translate(-45px, -60px) !important;
+  }
+
+}
+
+
+
+/* ✅ MOBILE: نخلي المربعات تحت بعض + عنوان ذهبي فوق كل مربع (بدون حذف المنحنى ولا العناوين) */
+@media (max-width: 980px){
+
+  /* خلي الأعمدة تحت بعض */
+  .ops-columns{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    padding: 0 16px !important;
+  }
+
+  /* شكل المربع */
+  .ops-col{
+    width: 100% !important;
+    background: var(--card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 18px !important;
+    padding: 16px !important;
+    box-shadow: 0 6px 16px rgba(43,26,15,0.06) !important;
+    text-align: right !important;
+    position: relative !important;
+
+    /* نخلي مساحة فوق للمسمى */
+    padding-top: 44px !important;
+  }
+
+  /* ✅ عنوان ذهبي فوق كل مربع (نضيفه تلقائيًا) */
+  .ops-col.col-prep::before{
+    content: "التحضير" !important;
+  }
+  .ops-col.col-ops::before{
+    content: "التشغيل" !important;
+  }
+  .ops-col.col-output::before{
+    content: "المخرجات" !important;
+  }
+
+  .ops-col::before{
+    position: absolute !important;
+    top: 14px !important;
+    right: 18px !important;
+
+    font-size: 18px !important;
+    font-weight: 900 !important;
+    color: var(--accent) !important;
+    line-height: 1 !important;
+
+    padding-bottom: 6px !important;
+    border-bottom: 1px solid rgba(201,162,77,0.55) !important;
+  }
+
+  /* ترتيب النص داخل المربعات */
+  .ops-col ul{
+    margin: 0 !important;
+    padding-right: 18px !important;
+  }
+
+  .ops-col li{
+    margin: 0 0 10px 0 !important;
+    font-size: 15px !important;
+    line-height: 1.9 !important;
+    color: var(--text) !important;
+  }
+
+  .ops-col li::marker{
+    color: var(--accent) !important;
+  }
+
+}
+
+
+
+/* ✅ MOBILE: العناوين أقصى اليمين + المربعات متراصّة */
+@media (max-width: 980px){
+
+  /* المربعات تحت بعض بدون تفرق */
+  .ops-columns{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;              /* قلل الفراغ */
+    padding: 0 14px !important;
+    align-items: stretch !important;
+  }
+
+  .ops-col{
+    width: 100% !important;
+    margin: 0 !important;              /* يمنع أي تباعد خارجي */
+    padding: 16px !important;
+    padding-top: 48px !important;      /* مساحة للعنوان */
+    border-radius: 18px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* ✅ العنوان أقصى اليمين داخل المربع */
+  .ops-col::before{
+    right: 14px !important;            /* أقصى اليمين */
+    left: auto !important;
+    top: 14px !important;
+
+    text-align: right !important;
+    width: auto !important;
+    margin: 0 !important;
+
+    display: inline-block !important;
+  }
+
+  /* ✅ لو فيه أي محاذاة وسط غصب */
+  .ops-col,
+  .ops-col *{
+    text-align: right !important;
+  }
+
+}
+
+
+/* ✅ MOBILE: رصّ المربعات الثلاثة في نفس المسار (بدون ما نلمس سطح المكتب) */
+@media (max-width: 980px){
+
+  /* الحاوية تجمعهم طولياً */
+  .ops-columns{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;     /* كلهم نفس العرض */
+    gap: 12px !important;               /* مسافة متساوية بينهم */
+    padding: 0 14px !important;
+  }
+
+  /* كل مربع نفس المكان تماماً */
+  .ops-col{
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+
+    /* ✅ أهم شيء: يلغي أي انحراف */
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+
+    box-sizing: border-box !important;
+  }
+}
+
+
+/* ✅ MOBILE: رجّع عنوان التحضير/التشغيل/المخرجات داخل كل مربع */
+@media (max-width: 980px){
+
+  /* نخلي المربعات متراصة ومثل بعض */
+  .ops-columns{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+    padding: 0 14px !important;
+  }
+
+  /* مهم جداً: نخلي المربع Relative عشان ::before يشتغل */
+  .ops-col{
+    width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+
+    position: relative !important;     /* ✅ رجّعها */
+    transform: none !important;
+    padding: 18px !important;
+    padding-top: 56px !important;      /* ✅ مساحة للعنوان */
+  }
+
+  /* ✅ العنوان الذهبي داخل المربع */
+  .ops-col::before{
+    position: absolute !important;
+    top: 16px !important;
+    right: 18px !important;
+    left: auto !important;
+
+    font-size: 18px !important;
+    font-weight: 900 !important;
+    color: var(--accent) !important;
+    line-height: 1 !important;
+
+    padding-bottom: 8px !important;
+    border-bottom: 1px solid rgba(201,162,77,0.55) !important;
+
+    z-index: 3 !important;
+    display: inline-block !important;
+  }
+
+  /* نص العناوين حسب كل مربع */
+  .ops-col.col-prep::before{ content: "التحضير" !important; }
+  .ops-col.col-ops::before{ content: "التشغيل" !important; }
+  .ops-col.col-output::before{ content: "المخرجات" !important; }
+
+}
+
+
+
+
+
+
+
+
+
+
+/* ✅ MOBILE OVERLAY: محاورنا تطلع فوق الهيدر وفوق كل شيء */
+@media (max-width: 980px){
+
+  /* خلفية شفافة تغطي الصفحة */
+  .nav-dropdown.open::after{
+    content:"";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.35);
+    z-index: 1000000;
+  }
+
+  /* القائمة نفسها (فوق الهيدر) */
+  .nav-dropdown-menu{
+    position: fixed !important;
+    top: 0 !important;            /* ✅ فوق الهيدر */
+    right: 0 !important;
+    left: 0 !important;
+
+    width: 100% !important;
+    min-width: 100% !important;
+
+    max-height: 100vh !important;
+    overflow-y: auto !important;
+
+    z-index: 1000001 !important;  /* ✅ أعلى من الهيدر */
+    border-radius: 0 0 22px 22px !important;
+
+    /* نخلي المحتوى يبدأ بعد الهيدر عشان ما ينحجب */
+    padding-top: 85px !important;
+
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: none !important;
+  }
+
+  .nav-dropdown.open .nav-dropdown-menu{
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  /* نلغي جسر hover بالجوال */
+  .nav-dropdown-menu::before{ display:none !important; }
+}
+
+
+
+/* ✅ MOBILE: خلي قائمة محاورنا طولي (عمودي) مو عرضي */
+@media (max-width: 980px){
+
+  /* قائمة محاورنا نفسها */
+  .nav-dropdown-menu{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    align-items: stretch !important;
+  }
+
+  /* كل رابط داخل القائمة ياخذ سطر كامل */
+  .nav-dropdown-menu a{
+    display: flex !important;
+    width: 100% !important;
+    justify-content: flex-start !important;
+    text-align: right !important;
+    white-space: normal !important;
+  }
+
+  /* العنوان داخل القائمة */
+  .nav-dropdown-title{
+    width: 100% !important;
+    text-align: right !important;
+    margin-bottom: 6px !important;
+  }
+}
+
+
+
+/* ✅ MOBILE: محاورنا (ستايل طولي فخم - مو نصوص يمين صندوق فاضي) */
+@media (max-width: 980px){
+
+  /* صندوق القائمة نفسه */
+  .nav-dropdown-menu{
+    position: fixed !important;
+    top: 85px !important;                 /* تحت الهيدر */
+    right: 12px !important;
+    left: 12px !important;
+
+    width: auto !important;
+    max-width: 430px !important;          /* ✅ ما يصير عريض وفاضي */
+    margin: 0 auto !important;
+
+    padding: 16px !important;
+    border-radius: 18px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+
+    background: rgba(40, 22, 12, .96) !important;  /* بني غامق فخم */
+    border: 1px solid rgba(255,255,255,.08) !important;
+    box-shadow: 0 20px 50px rgba(0,0,0,.35) !important;
+
+    max-height: calc(100vh - 120px) !important;
+    overflow-y: auto !important;
+
+    z-index: 1000005 !important;
+  }
+
+  /* عنوان القائمة */
+  .nav-dropdown-title{
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-align: right !important;
+    padding: 6px 4px 10px !important;
+    margin: 0 0 2px !important;
+    border-bottom: 1px solid rgba(255,255,255,.12) !important;
+    opacity: .95 !important;
+  }
+
+  /* كل عنصر (زر) */
+  .nav-dropdown-menu a{
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    padding: 12px 14px !important;
+    border-radius: 14px !important;
+
+    background: rgba(255,255,255,.06) !important;
+    border: 1px solid rgba(255,255,255,.08) !important;
+
+    text-align: right !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
+
+    transition: .2s ease !important;
+  }
+
+  .nav-dropdown-menu a:hover{
+    background: rgba(255,255,255,.10) !important;
+  }
+
+  /* ✅ يمنع أي ترتيب عرضي قديم */
+  .nav-dropdown-menu{
+    align-items: stretch !important;
+  }
+}
+
+
+
+/* ✅ DESKTOP: خلي Dropdown "محاورنا" نفس ستايل الجوال (فخم + بطاقات) */
+@media (min-width: 981px){
+
+  /* صندوق القائمة */
+  .nav-dropdown{
+    position: relative !important;
+  }
+
+  .nav-dropdown-menu{
+    position: absolute !important;
+    top: calc(100% + 14px) !important;
+    right: 0 !important;
+    left: auto !important;
+
+    width: 340px !important;
+    max-width: 340px !important;
+
+    padding: 16px !important;
+    border-radius: 18px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+
+    background: rgba(40, 22, 12, .96) !important;
+    border: 1px solid rgba(255,255,255,.08) !important;
+    box-shadow: 0 20px 55px rgba(0,0,0,.38) !important;
+
+    z-index: 9999 !important;
+
+    /* مغلق افتراضي */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(6px) !important;
+    transition: .22s ease !important;
+  }
+
+  /* فتح القائمة بالهوفر */
+  .nav-dropdown:hover .nav-dropdown-menu{
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+
+  /* عنوان القائمة */
+  .nav-dropdown-title{
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    text-align: right !important;
+    padding: 6px 4px 10px !important;
+    margin: 0 0 2px !important;
+    border-bottom: 1px solid rgba(255,255,255,.12) !important;
+    opacity: .95 !important;
+  }
+
+  /* روابط المحاور كبطاقات */
+  .nav-dropdown-menu a{
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    padding: 12px 14px !important;
+    border-radius: 14px !important;
+
+    background: rgba(255,255,255,.06) !important;
+    border: 1px solid rgba(255,255,255,.08) !important;
+
+    text-align: right !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
+
+    transition: .2s ease !important;
+  }
+
+  .nav-dropdown-menu a:hover{
+    background: rgba(255,255,255,.10) !important;
+    transform: translateX(-2px) !important;
+  }
+
+  /* سهم محاورنا يتحرك لطيف */
+  .nav-dropdown:hover .fa-chevron-down{
+    transform: rotate(180deg);
+    transition: .2s ease;
+  }
+}
+
+
+
+/* ✅ DESKTOP: خلّي اللوقو نفس شكل الجوال (الجوال هو النموذج) */
+@media (min-width: 981px){
+
+  /* رابط اللوقو */
+  .logo-link{
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    min-width: 320px !important;
+  }
+
+  /* صورة الشعار */
+  .logo-link img{
+    width: 48px !important;
+    height: 48px !important;
+    object-fit: contain !important;
+  }
+
+  /* صندوق النص (نهج + لخدمات الأعمال) */
+  .logo-tagline{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    line-height: 1.1 !important;
+    gap: 6px !important;
+    padding-top: 2px !important;
+  }
+
+  /* السطر الأول */
+  .logo-line1{
+    font-size: 16px !important;
+    font-weight: 800 !important;
+    letter-spacing: .2px !important;
+    white-space: nowrap !important;
+  }
+
+  /* الخط الفاصل اللي بالنص (خليه نفس الجوال: خفيف) */
+  .logo-midline{
+    display: block !important;
+    width: 180px !important;
+    height: 1px !important;
+    background: rgba(255,255,255,.25) !important;
+    margin-right: 0 !important;
+  }
+
+  /* السطر الثاني */
+  .logo-line2{
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    opacity: .9 !important;
+    white-space: nowrap !important;
+  }
+}
+
+
+
+/* ✅ DESKTOP: اللوقو نفس الجوال (بدون خط + اللون مضبوط) */
+@media (min-width: 981px){
+
+  /* شكل مجموعة اللوقو */
+  .logo-link{
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+
+  /* الشعار */
+  .logo-link img{
+    width: 50px !important;
+    height: 50px !important;
+    object-fit: contain !important;
+  }
+
+  /* النص */
+  .logo-tagline{
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    line-height: 1.1 !important;
+  }
+
+  /* ✅ إزالة الخط نهائي */
+  .logo-midline{
+    display: none !important;
+  }
+
+  /* السطر الأول (أبيض) */
+  .logo-line1{
+    font-size: 16px !important;
+    font-weight: 800 !important;
+    color: #FFFFFF !important;
+    white-space: nowrap !important;
+  }
+
+  /* السطر الثاني (ذهبي) */
+  .logo-line2{
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    color: #f0e4c0 !important; /* #D2A753 */
+    white-space: nowrap !important;
+  }
+}
