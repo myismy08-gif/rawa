@@ -4184,3 +4184,194 @@ html[dir="ltr"] .footer-column a{
     color: #333; /* لون مناسب للنص */
   }
 }
+
+
+
+/* ✅ MOBILE FIX: شركاؤنا (النص فوق + الشريط تحت) */
+@media (max-width: 980px){
+
+  .partners-container{
+    display: flex !important;
+    flex-direction: column !important; /* النص فوق - الشريط تحت */
+    gap: 22px !important;
+    padding: 0 22px !important;
+    text-align: center !important;
+  }
+
+  .partners-text{
+    order: 1 !important;
+    text-align: center !important;
+
+    /* ✅ مهم: إلغاء تحريك النص بالجوال */
+    transform: none !important;
+    --text-shift-x: 0px;
+    --text-shift-y: 0px;
+  }
+
+  .logos-wrapper{
+    order: 2 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+}
+
+
+
+
+
+/* ✅ MOBILE FIX + تنسيق النص: شركاؤنا (النص فوق + الشريط تحت) */
+@media (max-width: 980px){
+
+  .partners-container{
+    display: flex !important;
+    flex-direction: column !important; /* النص فوق - الشريط تحت */
+    gap: 22px !important;
+    padding: 0 22px !important;
+    text-align: center !important;
+  }
+
+  .partners-text{
+    order: 1 !important;
+    text-align: center !important;
+
+    /* ✅ مهم: إلغاء تحريك النص بالجوال */
+    transform: none !important;
+    --text-shift-x: 0px !important;
+    --text-shift-y: 0px !important;
+
+    /* ✅ تحسين شكل النص */
+    max-width: 100% !important;
+    padding: 0 10px !important;
+    margin: 0 auto !important;
+  }
+
+  .partners-text h2{
+    font-weight: 800 !important;
+    line-height: 1.6 !important;
+    font-size: 26px !important;
+    margin: 0 0 10px 0 !important;
+    letter-spacing: -0.2px !important;
+  }
+
+  .partners-text a{
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    text-decoration: none !important;
+
+    padding-bottom: 5px !important;
+    border-bottom: 1px solid rgba(201,162,77,0.55) !important;
+    transition: 0.2s ease !important;
+  }
+
+  .partners-text a:hover{
+    opacity: 0.85 !important;
+  }
+
+  .logos-wrapper{
+    order: 2 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+}
+
+
+
+/* ✅ Fix عنوان الفرعي تحت الخط المتموّج (Mobile) */
+@media (max-width: 980px){
+
+  /* العنوان الرئيسي */
+  .section-title,
+  .projects-title,
+  .pm-title{
+    margin-bottom: 18px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* الخط/المنحنى (الديفايدر) */
+  .wave-divider,
+  .section-divider,
+  .curved-line{
+    margin: 10px auto 18px auto !important;
+  }
+
+  /* النص اللي تحت الخط (التطبيقات...) */
+  .section-subtitle,
+  .projects-subtitle,
+  .pm-subtitle{
+    position: relative !important;
+    transform: none !important;
+    top: auto !important;
+    bottom: auto !important;
+
+    display: block !important;
+    text-align: center !important;
+
+    margin-top: 10px !important;
+    padding: 0 16px !important;
+
+    font-size: 18px !important;
+    font-weight: 800 !important;
+    line-height: 1.7 !important;
+
+    white-space: normal !important;   /* يمنع التكدس */
+    z-index: 2 !important;
+  }
+}
+
+
+/* ✅ تحكم بمكان "التحضير" بالجوال فقط */
+@media (max-width: 980px){
+
+  #label-prep{
+    display: inline-block !important; 
+    position: relative !important;
+
+    /* ✨ غيّري الأرقام براحتك */
+    transform: translate(100px, -60px) !important; 
+    /* مثال:
+       translate(20px, 10px) = يمين + تحت
+       translate(-20px, -10px) = يسار + فوق
+    */
+  }
+
+}
+
+
+/* ✅ تحكم بمكان "التشغيل" بالجوال فقط */
+@media (max-width: 980px){
+
+  #label-ops{
+    display: inline-block !important;
+    position: relative !important;
+
+    /* ✨ غيّري الأرقام براحتك */
+    transform: translate(20px, -50px) !important;
+    /* مثال:
+       translate(20px, 10px) = يمين + تحت
+       translate(-20px, -10px) = يسار + فوق
+    */
+  }
+
+}
+
+
+/* ✅ تحكم بمكان "المخرجات" بالجوال فقط */
+@media (max-width: 980px){
+
+  #label-output{
+    display: inline-block !important;
+    position: relative !important;
+
+    /* ✨ غيّري الأرقام براحتك */
+    transform: translate(-50px, -60px) !important;
+  }
+
+}
