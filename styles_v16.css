@@ -4057,122 +4057,130 @@ html[dir="ltr"] .footer-column a{
 
 
 
-
-
-
 @media (max-width: 520px) {
-  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(1)::before {
-    content: "من نحن";
-  }
-
-  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(2)::before {
-    content: "رؤيتنا";
-  }
-
-  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(1),
-  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(2) {
-    position: relative;
-    padding-right: 32px;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 24px;
-  }
-
-  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(1)::before,
-  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(2)::before {
-    position: absolute;
-    right: 0;
-    top: 0;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--accent);
-    padding-left: 12px;
-    line-height: 1.3;
-  }
-
-  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(1)::after,
-  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(2)::after {
-    content: "";
-    position: absolute;
-    right: 24px;
-    top: 0;
-    height: 100%;
-    width: 2px;
-    background-color: var(--accent);
-    border-radius: 1px;
-  }
-
-  .nahj-about-wrapper .u12-34c686 h2,
-  .nahj-about-wrapper .u12-34c686 p {
-    text-align: right;
-  }
-}
-
-@media (max-width: 520px) {
-  /* ترتيب سكشن "من نحن" و "رؤيتنا" عمودي */
   .nahj-about-wrapper .u8-925592 {
     flex-direction: column !important;
-    gap: 32px !important;
   }
 
-  /* العناوين العمودية + الخط الذهبي */
+  .nahj-about-wrapper .u12-34c686 > div {
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
   .nahj-about-wrapper .u12-34c686 > div:nth-of-type(1)::before {
-    content: "من نحن";
+    content: "--- من نحن";
+    display: block;
+    font-size: 16px;
+    color: var(--accent);
+    font-weight: bold;
+    margin-bottom: 10px;
   }
+
   .nahj-about-wrapper .u12-34c686 > div:nth-of-type(2)::before {
-    content: "رؤيتنا";
-  }
-
-  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(1),
-  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(2) {
-    position: relative;
-    padding-right: 32px !important;
-    border-bottom: 1px solid var(--border) !important;
-    padding-bottom: 24px !important;
-  }
-
-  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(1)::before,
-  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(2)::before {
-    position: absolute;
-    right: 0;
-    top: 0;
-    writing-mode: vertical-rl !important;
-    transform: rotate(180deg) !important;
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    color: var(--accent) !important;
-    padding-left: 10px !important;
-    line-height: 1.3 !important;
-  }
-
-  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(1)::after,
-  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(2)::after {
-    content: "";
-    position: absolute;
-    right: 24px;
-    top: 0;
-    height: 100%;
-    width: 2px;
-    background-color: var(--accent);
-    border-radius: 1px;
-  }
-
-  /* تنسيق النص */
-  .nahj-about-wrapper .u12-34c686 h2,
-  .nahj-about-wrapper .u12-34c686 p {
-    text-align: right !important;
-    margin: 0 !important;
+    content: "--- رؤيتنا";
+    display: block;
+    font-size: 16px;
+    color: var(--accent);
+    font-weight: bold;
+    margin-bottom: 10px;
   }
 
   .nahj-about-wrapper .u12-34c686 h2 {
-    font-size: 18px !important;
-    margin-bottom: 12px !important;
+    display: none; /* نخفي العنوان لأننا أضفناه في ::before */
   }
 
   .nahj-about-wrapper .u12-34c686 p {
-    font-size: 15px !important;
-    color: var(--muted) !important;
-    line-height: 1.9 !important;
+    text-align: right;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.9;
+  }
+}
+
+
+
+@media (max-width: 520px) {
+  /* إخفاء تصميم سطح المكتب للجوال */
+  .nahj-about-wrapper .u9-b05138 {
+    display: none !important;
+  }
+
+  .nahj-about-wrapper .u13-cdf92a {
+    display: none !important; /* هذا العنوان كان يكرر "من نحن" */
+  }
+}
+
+
+
+@media (max-width: 520px) {
+  /* إخفاء العناوين الجانبية العمودية فقط */
+  .nahj-about-wrapper .u9-b05138 {
+    display: none !important;
+  }
+
+  /* نظهر عنوان h2 داخل المحتوى */
+  .nahj-about-wrapper .u13-cdf92a {
+    display: block !important;
+    font-size: 18px;
+    color: var(--text);
+    font-weight: bold;
+    margin-bottom: 12px;
+    text-align: right;
+  }
+
+  /* محتوى الفقرات */
+  .nahj-about-wrapper .u12-34c686 p {
+    text-align: right;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.9;
+  }
+
+  /* عنوان خط --- */
+  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(1)::before {
+    content: "--- من نحن";
+    display: block;
+    font-size: 16px;
+    color: var(--accent);
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(2)::before {
+    content: "--- رؤيتنا";
+    display: block;
+    font-size: 16px;
+    color: var(--accent);
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+}
+
+
+
+/* إخفاء عناصر سطح المكتب في الجوال */
+@media (max-width: 768px) {
+  .nahj-about-wrapper .u9-b05138 {
+    display: none;
+  }
+  
+  .nahj-about-wrapper .u12-34c686 {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  .nahj-about-wrapper .u13-cdf92a {
+    font-size: 1.5rem;
+    color: #000; /* إعادة اللون الأسود للعناوين */
+  }
+
+  .nahj-about-wrapper .u14-de1c02,
+  .nahj-about-wrapper .u15-c04822 {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #333; /* لون مناسب للنص */
   }
 }
