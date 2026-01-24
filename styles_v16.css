@@ -4371,7 +4371,7 @@ html[dir="ltr"] .footer-column a{
     position: relative !important;
 
     /* ✨ غيّري الأرقام براحتك */
-    transform: translate(-50px, -60px) !important;
+    transform: translate(-45px, -60px) !important;
   }
 
 }
@@ -4574,3 +4574,360 @@ html[dir="ltr"] .footer-column a{
 
 }
 
+
+
+
+
+
+
+
+
+
+/* ✅ MOBILE OVERLAY: محاورنا تطلع فوق الهيدر وفوق كل شيء */
+@media (max-width: 980px){
+
+  /* خلفية شفافة تغطي الصفحة */
+  .nav-dropdown.open::after{
+    content:"";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.35);
+    z-index: 1000000;
+  }
+
+  /* القائمة نفسها (فوق الهيدر) */
+  .nav-dropdown-menu{
+    position: fixed !important;
+    top: 0 !important;            /* ✅ فوق الهيدر */
+    right: 0 !important;
+    left: 0 !important;
+
+    width: 100% !important;
+    min-width: 100% !important;
+
+    max-height: 100vh !important;
+    overflow-y: auto !important;
+
+    z-index: 1000001 !important;  /* ✅ أعلى من الهيدر */
+    border-radius: 0 0 22px 22px !important;
+
+    /* نخلي المحتوى يبدأ بعد الهيدر عشان ما ينحجب */
+    padding-top: 85px !important;
+
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: none !important;
+  }
+
+  .nav-dropdown.open .nav-dropdown-menu{
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  /* نلغي جسر hover بالجوال */
+  .nav-dropdown-menu::before{ display:none !important; }
+}
+
+
+
+/* ✅ MOBILE: خلي قائمة محاورنا طولي (عمودي) مو عرضي */
+@media (max-width: 980px){
+
+  /* قائمة محاورنا نفسها */
+  .nav-dropdown-menu{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    align-items: stretch !important;
+  }
+
+  /* كل رابط داخل القائمة ياخذ سطر كامل */
+  .nav-dropdown-menu a{
+    display: flex !important;
+    width: 100% !important;
+    justify-content: flex-start !important;
+    text-align: right !important;
+    white-space: normal !important;
+  }
+
+  /* العنوان داخل القائمة */
+  .nav-dropdown-title{
+    width: 100% !important;
+    text-align: right !important;
+    margin-bottom: 6px !important;
+  }
+}
+
+
+
+/* ✅ MOBILE: محاورنا (ستايل طولي فخم - مو نصوص يمين صندوق فاضي) */
+@media (max-width: 980px){
+
+  /* صندوق القائمة نفسه */
+  .nav-dropdown-menu{
+    position: fixed !important;
+    top: 85px !important;                 /* تحت الهيدر */
+    right: 12px !important;
+    left: 12px !important;
+
+    width: auto !important;
+    max-width: 430px !important;          /* ✅ ما يصير عريض وفاضي */
+    margin: 0 auto !important;
+
+    padding: 16px !important;
+    border-radius: 18px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+
+    background: rgba(40, 22, 12, .96) !important;  /* بني غامق فخم */
+    border: 1px solid rgba(255,255,255,.08) !important;
+    box-shadow: 0 20px 50px rgba(0,0,0,.35) !important;
+
+    max-height: calc(100vh - 120px) !important;
+    overflow-y: auto !important;
+
+    z-index: 1000005 !important;
+  }
+
+  /* عنوان القائمة */
+  .nav-dropdown-title{
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-align: right !important;
+    padding: 6px 4px 10px !important;
+    margin: 0 0 2px !important;
+    border-bottom: 1px solid rgba(255,255,255,.12) !important;
+    opacity: .95 !important;
+  }
+
+  /* كل عنصر (زر) */
+  .nav-dropdown-menu a{
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    padding: 12px 14px !important;
+    border-radius: 14px !important;
+
+    background: rgba(255,255,255,.06) !important;
+    border: 1px solid rgba(255,255,255,.08) !important;
+
+    text-align: right !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
+
+    transition: .2s ease !important;
+  }
+
+  .nav-dropdown-menu a:hover{
+    background: rgba(255,255,255,.10) !important;
+  }
+
+  /* ✅ يمنع أي ترتيب عرضي قديم */
+  .nav-dropdown-menu{
+    align-items: stretch !important;
+  }
+}
+
+
+
+/* ✅ DESKTOP: خلي Dropdown "محاورنا" نفس ستايل الجوال (فخم + بطاقات) */
+@media (min-width: 981px){
+
+  /* صندوق القائمة */
+  .nav-dropdown{
+    position: relative !important;
+  }
+
+  .nav-dropdown-menu{
+    position: absolute !important;
+    top: calc(100% + 14px) !important;
+    right: 0 !important;
+    left: auto !important;
+
+    width: 340px !important;
+    max-width: 340px !important;
+
+    padding: 16px !important;
+    border-radius: 18px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+
+    background: rgba(40, 22, 12, .96) !important;
+    border: 1px solid rgba(255,255,255,.08) !important;
+    box-shadow: 0 20px 55px rgba(0,0,0,.38) !important;
+
+    z-index: 9999 !important;
+
+    /* مغلق افتراضي */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(6px) !important;
+    transition: .22s ease !important;
+  }
+
+  /* فتح القائمة بالهوفر */
+  .nav-dropdown:hover .nav-dropdown-menu{
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+
+  /* عنوان القائمة */
+  .nav-dropdown-title{
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    text-align: right !important;
+    padding: 6px 4px 10px !important;
+    margin: 0 0 2px !important;
+    border-bottom: 1px solid rgba(255,255,255,.12) !important;
+    opacity: .95 !important;
+  }
+
+  /* روابط المحاور كبطاقات */
+  .nav-dropdown-menu a{
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    padding: 12px 14px !important;
+    border-radius: 14px !important;
+
+    background: rgba(255,255,255,.06) !important;
+    border: 1px solid rgba(255,255,255,.08) !important;
+
+    text-align: right !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
+
+    transition: .2s ease !important;
+  }
+
+  .nav-dropdown-menu a:hover{
+    background: rgba(255,255,255,.10) !important;
+    transform: translateX(-2px) !important;
+  }
+
+  /* سهم محاورنا يتحرك لطيف */
+  .nav-dropdown:hover .fa-chevron-down{
+    transform: rotate(180deg);
+    transition: .2s ease;
+  }
+}
+
+
+
+/* ✅ DESKTOP: خلّي اللوقو نفس شكل الجوال (الجوال هو النموذج) */
+@media (min-width: 981px){
+
+  /* رابط اللوقو */
+  .logo-link{
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    min-width: 320px !important;
+  }
+
+  /* صورة الشعار */
+  .logo-link img{
+    width: 48px !important;
+    height: 48px !important;
+    object-fit: contain !important;
+  }
+
+  /* صندوق النص (نهج + لخدمات الأعمال) */
+  .logo-tagline{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    line-height: 1.1 !important;
+    gap: 6px !important;
+    padding-top: 2px !important;
+  }
+
+  /* السطر الأول */
+  .logo-line1{
+    font-size: 16px !important;
+    font-weight: 800 !important;
+    letter-spacing: .2px !important;
+    white-space: nowrap !important;
+  }
+
+  /* الخط الفاصل اللي بالنص (خليه نفس الجوال: خفيف) */
+  .logo-midline{
+    display: block !important;
+    width: 180px !important;
+    height: 1px !important;
+    background: rgba(255,255,255,.25) !important;
+    margin-right: 0 !important;
+  }
+
+  /* السطر الثاني */
+  .logo-line2{
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    opacity: .9 !important;
+    white-space: nowrap !important;
+  }
+}
+
+
+
+/* ✅ DESKTOP: اللوقو نفس الجوال (بدون خط + اللون مضبوط) */
+@media (min-width: 981px){
+
+  /* شكل مجموعة اللوقو */
+  .logo-link{
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+
+  /* الشعار */
+  .logo-link img{
+    width: 50px !important;
+    height: 50px !important;
+    object-fit: contain !important;
+  }
+
+  /* النص */
+  .logo-tagline{
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    line-height: 1.1 !important;
+  }
+
+  /* ✅ إزالة الخط نهائي */
+  .logo-midline{
+    display: none !important;
+  }
+
+  /* السطر الأول (أبيض) */
+  .logo-line1{
+    font-size: 16px !important;
+    font-weight: 800 !important;
+    color: #FFFFFF !important;
+    white-space: nowrap !important;
+  }
+
+  /* السطر الثاني (ذهبي) */
+  .logo-line2{
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    color: #f0e4c0 !important; /* #D2A753 */
+    white-space: nowrap !important;
+  }
+}
