@@ -4007,5 +4007,28 @@ html[dir="ltr"] .footer-column a{
 }
 
 
-/* ✅ تعطيل حركة شعارات الشركاء (ثابت بدون تحريك) */
-.logos-track{animation:none !important; transform:none !important;}
+
+@media (max-width: 520px) {
+  .main-navbar {
+    padding: 4px 0 !important;
+    background: var(--nahj-brown-dark) !important;
+  }
+
+  .navbar {
+    gap: 4px !important;
+  }
+
+  .nav-links {
+    gap: 8px !important;
+    justify-content: center !important;
+  }
+
+  .nav-links a {
+    font-size: 13px !important;
+    padding: 2px 0 !important;
+  }
+
+  .extras a {
+    font-size: 13px !important;
+  }
+}
