@@ -4375,3 +4375,202 @@ html[dir="ltr"] .footer-column a{
   }
 
 }
+
+
+
+/* ✅ MOBILE: نخلي المربعات تحت بعض + عنوان ذهبي فوق كل مربع (بدون حذف المنحنى ولا العناوين) */
+@media (max-width: 980px){
+
+  /* خلي الأعمدة تحت بعض */
+  .ops-columns{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    padding: 0 16px !important;
+  }
+
+  /* شكل المربع */
+  .ops-col{
+    width: 100% !important;
+    background: var(--card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 18px !important;
+    padding: 16px !important;
+    box-shadow: 0 6px 16px rgba(43,26,15,0.06) !important;
+    text-align: right !important;
+    position: relative !important;
+
+    /* نخلي مساحة فوق للمسمى */
+    padding-top: 44px !important;
+  }
+
+  /* ✅ عنوان ذهبي فوق كل مربع (نضيفه تلقائيًا) */
+  .ops-col.col-prep::before{
+    content: "التحضير" !important;
+  }
+  .ops-col.col-ops::before{
+    content: "التشغيل" !important;
+  }
+  .ops-col.col-output::before{
+    content: "المخرجات" !important;
+  }
+
+  .ops-col::before{
+    position: absolute !important;
+    top: 14px !important;
+    right: 18px !important;
+
+    font-size: 18px !important;
+    font-weight: 900 !important;
+    color: var(--accent) !important;
+    line-height: 1 !important;
+
+    padding-bottom: 6px !important;
+    border-bottom: 1px solid rgba(201,162,77,0.55) !important;
+  }
+
+  /* ترتيب النص داخل المربعات */
+  .ops-col ul{
+    margin: 0 !important;
+    padding-right: 18px !important;
+  }
+
+  .ops-col li{
+    margin: 0 0 10px 0 !important;
+    font-size: 15px !important;
+    line-height: 1.9 !important;
+    color: var(--text) !important;
+  }
+
+  .ops-col li::marker{
+    color: var(--accent) !important;
+  }
+
+}
+
+
+
+/* ✅ MOBILE: العناوين أقصى اليمين + المربعات متراصّة */
+@media (max-width: 980px){
+
+  /* المربعات تحت بعض بدون تفرق */
+  .ops-columns{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;              /* قلل الفراغ */
+    padding: 0 14px !important;
+    align-items: stretch !important;
+  }
+
+  .ops-col{
+    width: 100% !important;
+    margin: 0 !important;              /* يمنع أي تباعد خارجي */
+    padding: 16px !important;
+    padding-top: 48px !important;      /* مساحة للعنوان */
+    border-radius: 18px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* ✅ العنوان أقصى اليمين داخل المربع */
+  .ops-col::before{
+    right: 14px !important;            /* أقصى اليمين */
+    left: auto !important;
+    top: 14px !important;
+
+    text-align: right !important;
+    width: auto !important;
+    margin: 0 !important;
+
+    display: inline-block !important;
+  }
+
+  /* ✅ لو فيه أي محاذاة وسط غصب */
+  .ops-col,
+  .ops-col *{
+    text-align: right !important;
+  }
+
+}
+
+
+/* ✅ MOBILE: رصّ المربعات الثلاثة في نفس المسار (بدون ما نلمس سطح المكتب) */
+@media (max-width: 980px){
+
+  /* الحاوية تجمعهم طولياً */
+  .ops-columns{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;     /* كلهم نفس العرض */
+    gap: 12px !important;               /* مسافة متساوية بينهم */
+    padding: 0 14px !important;
+  }
+
+  /* كل مربع نفس المكان تماماً */
+  .ops-col{
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+
+    /* ✅ أهم شيء: يلغي أي انحراف */
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+
+    box-sizing: border-box !important;
+  }
+}
+
+
+/* ✅ MOBILE: رجّع عنوان التحضير/التشغيل/المخرجات داخل كل مربع */
+@media (max-width: 980px){
+
+  /* نخلي المربعات متراصة ومثل بعض */
+  .ops-columns{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+    padding: 0 14px !important;
+  }
+
+  /* مهم جداً: نخلي المربع Relative عشان ::before يشتغل */
+  .ops-col{
+    width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+
+    position: relative !important;     /* ✅ رجّعها */
+    transform: none !important;
+    padding: 18px !important;
+    padding-top: 56px !important;      /* ✅ مساحة للعنوان */
+  }
+
+  /* ✅ العنوان الذهبي داخل المربع */
+  .ops-col::before{
+    position: absolute !important;
+    top: 16px !important;
+    right: 18px !important;
+    left: auto !important;
+
+    font-size: 18px !important;
+    font-weight: 900 !important;
+    color: var(--accent) !important;
+    line-height: 1 !important;
+
+    padding-bottom: 8px !important;
+    border-bottom: 1px solid rgba(201,162,77,0.55) !important;
+
+    z-index: 3 !important;
+    display: inline-block !important;
+  }
+
+  /* نص العناوين حسب كل مربع */
+  .ops-col.col-prep::before{ content: "التحضير" !important; }
+  .ops-col.col-ops::before{ content: "التشغيل" !important; }
+  .ops-col.col-output::before{ content: "المخرجات" !important; }
+
+}
+
