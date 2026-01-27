@@ -5016,17 +5016,19 @@ html[dir="ltr"] .footer-column a{
 
 
 
+/* ✅ MOBILE ONLY: زر اللغة RTL يسار / LTR يمين (بدون تأثير على الديسكتوب) */
+@media (max-width: 980px){
 
+  html[dir="ltr"] .lang-toggle{
+    left: auto !important;
+    right: 16px !important;
+  }
 
-/* ✅ زر اللغة: RTL يسار / LTR يمين (عشان ما يغطي اللوقو) */
-html[dir="ltr"] .lang-toggle{
-  left: auto !important;
-  right: 16px !important;
-}
+  html[dir="rtl"] .lang-toggle{
+    right: auto !important;
+    left: 16px !important;
+  }
 
-html[dir="rtl"] .lang-toggle{
-  right: auto !important;
-  left: 16px !important;
 }
 
 
@@ -5082,5 +5084,44 @@ html[dir="rtl"] .lang-toggle{
     line-height: 1.9 !important;
     color: var(--nahj-text-dark) !important;
     opacity: 0.92 !important;
+  }
+}
+
+
+
+/* ✅ DESKTOP: ودي زر اللغة أقصى يسار أكثر */
+@media (min-width: 981px){
+  .lang-toggle{
+    left: 6px !important;   /* جرّبي 6 ثم 0 إذا تبينه أكثر */
+    right: auto !important;
+  }
+}
+
+
+
+
+
+
+
+/* ✅ MOBILE: نزّل نص الهيرو + حرّك الصورة عشان البنت تبان */
+@media (max-width: 980px){
+
+  /* حرّكي الصورة: زيدي % = يروح يمين أكثر = يظهر اللي على اليمين */
+  .cover.hero-image{
+    background-position: 90% 22% !important;
+    background-size: cover !important;
+  }
+
+  /* نزّل المحتوى نفسه بدون ما نطوّل الهيرو */
+  .cover.hero-image .hero-content{
+    transform: translateY(28px) !important;  /* زوديها 34px إذا تبينه أنزل */
+    max-width: 560px !important;            /* بدل 720 عشان ما يزحم بالجوال */
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  /* لو لسه قريب من الهيدر جدًا */
+  .cover.hero-image{
+    padding-top: 86px !important; /* خفيف فقط */
   }
 }
