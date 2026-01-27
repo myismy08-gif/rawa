@@ -2543,3 +2543,82 @@ input{
   visibility: visible !important;
   pointer-events: auto !important;
 }
+
+
+@media (max-width: 980px){
+
+  .nahj-quote{
+    padding: 26px 16px !important;
+    gap: 14px !important;
+    justify-content: center !important;
+  }
+
+  .nahj-quote .q-img{
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .nahj-quote .q-img img{
+    width: 170px !important;     /* ✅ بدل ما يكون ضخم */
+    max-width: 70% !important;
+    border-radius: 18px !important;
+  }
+
+  .nahj-quote .q-text{
+    flex: 1 1 100% !important;
+    padding: 0 !important;
+    text-align: center !important;
+  }
+
+  .nahj-quote .q-text p{
+    font-size: 18px !important;
+    line-height: 1.95 !important;
+    margin-bottom: 10px !important;
+  }
+
+  .nahj-quote .q-text h4{
+    font-size: 16px !important;
+  }
+}
+
+@media (max-width: 980px){
+
+  .nahj-philo{
+    padding: 34px 16px !important;
+  }
+
+  .nahj-philo-grid{
+    padding: 22px 16px !important;
+    border-radius: 20px !important;
+  }
+
+  /* ✅ أهم جزء: تقليل المسافة يمين */
+  .nahj-timeline{
+    padding-right: 46px !important;
+  }
+
+  /* خط التايملاين + النقاط أقرب لليمين */
+  .nahj-timeline::before,
+  .nahj-dot,
+  .nahj-item::after{
+    right: 18px !important;
+  }
+
+  /* الكروت تتحرك يمين (بدون فراغ ضخم) */
+  .nahj-card{
+    margin-right: 46px !important;
+    padding: 14px 14px !important;
+    border-radius: 16px !important;
+  }
+
+  .nahj-card h4{
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+
+  .nahj-card p{
+    font-size: 14px !important;
+    line-height: 1.8 !important;
+  }
+}
