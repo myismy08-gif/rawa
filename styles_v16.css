@@ -5125,3 +5125,52 @@ html[dir="ltr"] .footer-column a{
     padding-top: 86px !important; /* خفيف فقط */
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================
+   ✅ Mobile: صف الروابط سطر واحد وما يلف
+   (بدون تغيير شكل زر اللغة)
+   ========================================= */
+@media (max-width: 980px){
+
+  /* خلي حاوية الروابط نفسها ما تلف */
+  .nav-links{
+    display: flex !important;
+    flex-wrap: nowrap !important;          /* ممنوع لف */
+    white-space: nowrap !important;        /* ممنوع نزول */
+    overflow-x: auto !important;           /* بدل ما ينزل -> سكرول */
+    -webkit-overflow-scrolling: touch;
+    gap: 16px;                             /* تقدرين تقللينها إذا تبين */
+    padding-bottom: 2px;
+  }
+
+  /* اخفي شكل الاسكرول (اختياري) */
+  .nav-links::-webkit-scrollbar{ display:none; }
+  .nav-links{ scrollbar-width:none; }
+
+  /* كل عنصر رابط لا ينزل سطر */
+  .nav-links > li,
+  .nav-links a{
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+  }
+
+  /* مهم داخل flex: عشان العنوان/الشعار ما يكسر التخطيط */
+  .brand, .logo-wrap, .brand-text{
+    min-width: 0 !important;
+  }
+
+  /* (اختياري) لو تبين مساحة أكثر بدون تغيير شكل زر اللغة */
+  html[dir="ltr"] .nav-links a{
+    font-size: 14px;   /* عدّليها إذا تبين، ما يغيّر زر اللغة */
+  }
+}
