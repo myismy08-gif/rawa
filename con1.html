@@ -152,6 +152,11 @@
 
           <li><a data-i18n="nav_partners" href="index.html#partners">شركاؤنا</a></li>
           <li><a data-i18n="nav_contact" href="contactll.html">تواصل معنا</a></li>
+          <li class="nav-join mobile-only">
+  <a data-i18n="join_trainer"
+     href="https://docs.google.com/forms/d/1YNvaM5DN7d3XdPBIm4qTIjkl8ZUjpSNucPohAw5igo4/edit?pli=1"
+     target="_blank" rel="noopener">انضم كمدرب</a>
+</li>
         </ul>
 
         <div class="extras">
@@ -429,11 +434,11 @@
     applyLang(current === "ar" ? "en" : "ar");
   });
 
-  // Load saved lang (default Arabic)
-  (function initLang(){
-    const saved = localStorage.getItem("site_lang") || "ar";
-    applyLang(saved);
-  })();
+(function initLang(){
+  const saved = localStorage.getItem("site_lang") || "ar"; // أول زيارة: عربي
+  applyLang(saved); // لو الاندكس EN بيصير saved = en وتفتح كل الصفحات EN
+})();
+
   </script>
 
 </body>
