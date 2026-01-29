@@ -583,3 +583,125 @@
     applyI18n(next);
   });
 })();
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btns = document.querySelectorAll(".nav-dropbtn");
+
+  function closeAll(exceptBtn = null) {
+    btns.forEach((b) => {
+      if (exceptBtn && b === exceptBtn) return;
+
+      const li = b.closest("li") || b.parentElement;
+      const menu =
+        (li && li.querySelector(".nav-dropdown-menu, .nav-dropdown-content, .dropdown-menu")) ||
+        b.nextElementSibling;
+
+      if (menu) menu.classList.remove("is-open");
+      b.setAttribute("aria-expanded", "false");
+    });
+  }
+
+  btns.forEach((btn) => {
+    const li = btn.closest("li") || btn.parentElement;
+    const menu =
+      (li && li.querySelector(".nav-dropdown-menu, .nav-dropdown-content, .dropdown-menu")) ||
+      btn.nextElementSibling;
+
+    if (!menu) return;
+
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const isOpen = menu.classList.contains("is-open");
+
+      // اقفل أي قائمة ثانية
+      closeAll(btn);
+
+      // Toggle نفس الزر
+      if (isOpen) {
+        menu.classList.remove("is-open");
+        btn.setAttribute("aria-expanded", "false");
+      } else {
+        menu.classList.add("is-open");
+        btn.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+
+  // يقفل إذا ضغطتي برا
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".nav-dropbtn, .nav-dropdown-menu, .nav-dropdown-content, .dropdown-menu")) {
+      closeAll();
+    }
+  });
+
+  // يقفل بـ ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeAll();
+  });
+});
+
+
+
+
+
+// ✅ Nahj: Axes dropdown open/close (mobile + desktop)
+document.addEventListener("DOMContentLoaded", () => {
+  const dropdown = document.querySelector(".nav-dropdown");
+  if (!dropdown) return;
+
+  const btn = dropdown.querySelector(".nav-dropbtn");
+  const menu = dropdown.querySelector(".nav-dropdown-menu");
+  if (!btn || !menu) return;
+
+  // Initial state
+  btn.setAttribute("aria-expanded", "false");
+  menu.setAttribute("hidden", "");
+
+  const isOpen = () => btn.getAttribute("aria-expanded") === "true";
+
+  const openMenu = () => {
+    btn.setAttribute("aria-expanded", "true");
+    menu.removeAttribute("hidden");
+    dropdown.classList.add("is-open");
+  };
+
+  const closeMenu = () => {
+    btn.setAttribute("aria-expanded", "false");
+    menu.setAttribute("hidden", "");
+    dropdown.classList.remove("is-open");
+  };
+
+  const toggleMenu = (e) => {
+    e.preventDefault();
+    e.stopPropagation(); // مهم عشان ضغط الزر ما ينحسب "خارج"
+    isOpen() ? closeMenu() : openMenu();
+  };
+
+  // 1) Toggle by button
+  btn.addEventListener("click", toggleMenu);
+
+  // 2) Close when clicking any link inside the menu
+  menu.addEventListener("click", (e) => {
+    const link = e.target.closest("a");
+    if (link) closeMenu();
+  });
+
+  // 3) Close on outside click / touch
+  const outsideClose = (e) => {
+    if (!dropdown.contains(e.target)) closeMenu();
+  };
+  document.addEventListener("click", outsideClose);
+  document.addEventListener("touchstart", outsideClose, { passive: true });
+
+  // 4) Close on ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+});

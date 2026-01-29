@@ -5831,6 +5831,7 @@ i,
 
 
 
+
 /* ===============================
    FIX: فلسفتنا بالجوال – Tajawal فقط
    =============================== */
@@ -5849,15 +5850,81 @@ i,
     font-size: 15.5px !important;
     line-height: 1.9 !important;
   }
+  
 }
 
 
 
-/* ===============================
-   FIX: تثبيت صورة الهيرو بالإنجليزي
-   =============================== */
-html[lang="en"] .hero-bg-img{
-  content: none !important;
-  display: block !important;
-  object-fit: cover !important;
+/* ================================
+   ✅ FIX IMAGE POSITION ON LANG SWITCH (AR ↔ EN)
+   ================================ */
+
+/* الحاوية حق الصورة */
+.hero-image,
+.hero-img,
+.hero-media,
+.hero-visual{
+  position: relative !important;
+  overflow: hidden !important;   /* يمنع أي تمدد أو انزلاق */
 }
+
+/* الصورة نفسها */
+.hero-image img,
+.hero-img img,
+.hero-media img,
+.hero-visual img{
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;        /* نفس القص دائمًا */
+  object-position: center center !important; /* تثبيت المكان */
+  transform: none !important;          /* يمنع أي تحريك */
+}
+
+/* تأكيد الاتجاه حتى مع EN */
+html[dir="ltr"] .hero-image img,
+html[dir="ltr"] .hero-img img,
+html[dir="ltr"] .hero-media img,
+html[dir="ltr"] .hero-visual img{
+  object-position: center center !important;
+}
+
+/* ================================
+   📱 Mobile specific (أهم جزء)
+   ================================ */
+@media (max-width: 820px){
+
+  .hero-image,
+  .hero-img,
+  .hero-media,
+  .hero-visual{
+    height: 260px !important;   /* ثابته – عدلي الرقم لو تبين */
+    min-height: 260px !important;
+    max-height: 260px !important;
+  }
+
+  .hero-image img,
+  .hero-img img,
+  .hero-media img,
+  .hero-visual img{
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center 35% !important; /* يثبت القص حتى لو تغير النص */
+  }
+}
+
+
+
+
+.nav-dropdown-menu,
+.nav-dropdown-content,
+.dropdown-menu{
+  display: none;
+}
+
+.nav-dropdown-menu.is-open,
+.nav-dropdown-content.is-open,
+.dropdown-menu.is-open{
+  display: block;
+}
+
+
