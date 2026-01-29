@@ -219,10 +219,11 @@
         const safeExt = ["pdf","doc","docx"].includes(ext) ? ext : "pdf";
         const objectPath = `applications/${appId}/cv.${safeExt}`;
 
-        const { error: upErr } = await supabase
-          .storage
-          .from("trainer-cv")
-          .upload(objectPath, file, { upsert: true, contentType: file.type || "application/octet-stream" });
+       const { error: upErr } = await supabase
+  .storage
+  .from("trainer-cv")
+  .upload(objectPath, file, { upsert: false, contentType: file.type || "application/octet-stream" });
+
 
         if (upErr) throw upErr;
 
