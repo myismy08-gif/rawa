@@ -5474,14 +5474,14 @@ html[dir="ltr"] .nahj-card{
   html[dir="ltr"] #label-ops{
     position: relative !important;
     /* تحريك: عدّلي الأرقام */
-    transform: translate(-65px, -60px) !important; /* X يسار/يمين, Y فوق/تحت */
+    transform: translate(-75px, -60px) !important; /* X يسار/يمين, Y فوق/تحت */
     text-align: left !important;
   }
 
   html[dir="ltr"] #label-prep{
     position: relative !important;
     /* تحريك: عدّلي الأرقام */
-    transform: translate(-110px, -75px) !important; /* X يسار/يمين, Y فوق/تحت */
+    transform: translate(-140px, -75px) !important; /* X يسار/يمين, Y فوق/تحت */
     text-align: left !important;
   }
 
@@ -5490,7 +5490,7 @@ html[dir="ltr"] .nahj-card{
  
   html[dir="ltr"] #label-output{
     position: relative !important;
-    transform: translate(0px, -75px) !important; /* X يسار/يمين, Y فوق/تحت */
+    transform: translate(-60px, -75px) !important; /* X يسار/يمين, Y فوق/تحت */
     text-align: left !important;
   }
 
@@ -5622,3 +5622,41 @@ html[dir="ltr"] .nahj-card{
     text-decoration: none !important;
   }
 }
+
+
+/* MOBILE + EN(LTR): Training Kits title + paragraph -> FAR LEFT */
+@media (max-width: 900px){
+
+  /* غطي العنوان والفقرة (أكثر الأنماط شيوعًا عندك) */
+  html[dir="ltr"] h2,
+  html[dir="ltr"] .section-title,
+  html[dir="ltr"] .services-title,
+  html[dir="ltr"] .kit-title,
+  html[dir="ltr"] .training-kits h2{
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+
+  html[dir="ltr"] p,
+  html[dir="ltr"] .section-desc,
+  html[dir="ltr"] .services-desc,
+  html[dir="ltr"] .kit-desc,
+  html[dir="ltr"] .training-kits p{
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+}
+
+/* MOBILE + EN (LTR): Training Kits title LEFT */
+@media (max-width: 900px){
+  html[dir="ltr"] h3[data-i18n="kits_title"]{
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+}
+
+
+
