@@ -5474,14 +5474,14 @@ html[dir="ltr"] .nahj-card{
   html[dir="ltr"] #label-ops{
     position: relative !important;
     /* تحريك: عدّلي الأرقام */
-    transform: translate(-75px, -60px) !important; /* X يسار/يمين, Y فوق/تحت */
+    transform: translate(-90px, -60px) !important; /* X يسار/يمين, Y فوق/تحت */
     text-align: left !important;
   }
 
   html[dir="ltr"] #label-prep{
     position: relative !important;
     /* تحريك: عدّلي الأرقام */
-    transform: translate(-140px, -75px) !important; /* X يسار/يمين, Y فوق/تحت */
+    transform: translate(-90px, -75px) !important; /* X يسار/يمين, Y فوق/تحت */
     text-align: left !important;
   }
 
@@ -5660,3 +5660,17 @@ html[dir="ltr"] .nahj-card{
 
 
 
+@media (max-width: 900px){
+  html[dir="ltr"] .nav-dropdown-title[data-i18n="axes_menu_title"]{
+    text-align: left !important;
+  }
+}
+
+
+
+
+
+/* Menu dropdown title: LEFT in English (LTR) – Desktop + Mobile */
+html[dir="ltr"] .nav-dropdown-title[data-i18n="axes_menu_title"]{
+  text-align: left !important;
+}
