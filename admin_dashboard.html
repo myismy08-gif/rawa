@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>لوحة تحكم المدربين | نهج</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="styles_v16.css"/>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase_config.js"></script>
+
+  <style>
+    .page-wrap{max-width:1200px;margin:0 auto;padding:28px 16px;}
+    .card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:16px;padding:16px;box-shadow:0 8px 28px rgba(0,0,0,.06)}
+    .grid{display:grid;grid-template-columns:340px 1fr;gap:14px}
+    @media (max-width:980px){.grid{grid-template-columns:1fr}}
+    input,select,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid rgba(0,0,0,.14)}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px;border-bottom:1px solid rgba(0,0,0,.08);vertical-align:top}
+    th{white-space:nowrap;text-align:right}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .btnx{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;border:0;cursor:pointer;background:var(--nahj-gold, #C9A24D);color:#2B1A0F;font-weight:800}
+    .btnx.secondary{background:transparent;border:1px solid rgba(0,0,0,.14)}
+    .pill{padding:6px 10px;border-radius:999px;border:1px solid rgba(0,0,0,.12);font-size:.9rem}
+    .muted{opacity:.75}
+    .danger{background:rgba(198,40,40,.10);border:1px solid rgba(198,40,40,.25)}
+    .ok{background:rgba(46,125,50,.10);border:1px solid rgba(46,125,50,.25)}
+    .split{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;align-items:center}
+    .detail p{margin:.35rem 0}
+    .detail a{word-break:break-all}
+  </style>
+</head>
+
+<body>
+  <header class="main-navbar">
+    <div class="container">
+      <nav class="navbar">
+        <a aria-label="العودة للرئيسية" class="logo logo-link" href="index.html">
+          <img alt="شعار نهج" src="picnahj.png"/>
+          <div class="logo-tagline">
+            <span class="logo-line1">نهج للتدريب والتثقيف الصحي</span>
+            <span aria-hidden="true" class="logo-midline"></span>
+            <span class="logo-line2">لخدمات الأعمال</span>
+          </div>
+        </a>
+        <div class="extras">
+          <a class="lang-toggle" href="join_trainer.html">نموذج التقديم</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <div class="split">
+      <h1 style="margin:0">لوحة تحكم المدربين</h1>
+      <div class="row">
+        <span id="auth-state" class="pill muted">غير مسجل</span>
+        <button id="btn-logout" class="btnx secondary" style="display:none"><i class="fa-solid fa-right-from-bracket"></i> خروج</button>
+      </div>
+    </div>
+
+    <div class="grid" style="margin-top:14px">
+      <!-- Left: Login + Filters -->
+      <div class="card">
+        <h3 style="margin-top:0">دخول المشرف</h3>
+        <form id="login-form">
+          <label>البريد</label>
+          <input name="email" type="email" autocomplete="username" placeholder="admin@email.com" required />
+          <label style="margin-top:10px">كلمة المرور</label>
+          <input name="password" type="password" autocomplete="current-password" required />
+          <div class="row" style="margin-top:12px">
+            <button class="btnx" type="submit"><i class="fa-solid fa-lock"></i> دخول</button>
+          </div>
+          <p class="muted" id="login-msg" style="margin:10px 0 0"></p>
+        </form>
+
+        <hr style="margin:16px 0;border:0;border-top:1px solid rgba(0,0,0,.08)">
+
+        <h3 style="margin-top:0">فلترة</h3>
+        <label>بحث</label>
+        <input id="q" placeholder="اسم / بريد / جوال / تخصص" />
+        <label style="margin-top:10px">الحالة</label>
+        <select id="status">
+          <option value="">الكل</option>
+          <option value="new">جديد</option>
+          <option value="reviewed">تمت المراجعة</option>
+          <option value="shortlisted">مرشح</option>
+          <option value="rejected">مرفوض</option>
+        </select>
+        <label style="margin-top:10px">التخصص</label>
+        <input id="spec" placeholder="مثال: موارد بشرية" />
+        <div class="row" style="margin-top:12px">
+          <button id="btn-refresh" class="btnx secondary" type="button"><i class="fa-solid fa-rotate"></i> تحديث</button>
+        </div>
+
+        <p class="muted" style="margin-top:12px">ملاحظة: لازم تضيفي المشرف في جدول admins داخل Supabase.</p>
+      </div>
+
+      <!-- Right: Table + Details -->
+      <div class="card">
+        <div class="split">
+          <h3 style="margin:0">الطلبات</h3>
+          <span class="pill" id="count-pill">0</span>
+        </div>
+
+        <div style="overflow:auto;margin-top:10px">
+          <table id="tbl">
+            <thead>
+              <tr>
+                <th>التاريخ</th>
+                <th>الاسم</th>
+                <th>التخصص</th>
+                <th>المدينة</th>
+                <th>الحالة</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <hr style="margin:16px 0;border:0;border-top:1px solid rgba(0,0,0,.08)">
+
+        <div class="detail" id="detail">
+          <p class="muted">اختاري طلب من الجدول لعرض التفاصيل.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const supabaseUrl = window.SUPABASE_URL;
+    const supabaseAnonKey = window.SUPABASE_ANON_KEY;
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
+
+    const $ = (s) => document.querySelector(s);
+    const fmtDate = (iso) => {
+      try { return new Date(iso).toLocaleString("ar-SA"); } catch { return iso; }
+    };
+
+    let currentRows = [];
+    let selectedId = null;
+
+    async function refreshAuthState(){
+      const { data: { session } } = await supabase.auth.getSession();
+      const loggedIn = !!session?.user?.id;
+      $("#auth-state").textContent = loggedIn ? ("مسجل: " + session.user.email) : "غير مسجل";
+      $("#btn-logout").style.display = loggedIn ? "inline-flex" : "none";
+      $("#login-form").style.display = loggedIn ? "none" : "block";
+      if (loggedIn) await loadRows();
+    }
+
+    async function loadRows(){
+      const q = $("#q").value.trim().toLowerCase();
+      const status = $("#status").value;
+      const spec = $("#spec").value.trim().toLowerCase();
+
+      // Base query (admins only via RLS)
+      let query = supabase
+        .from("trainer_applications")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(200);
+
+      if (status) query = query.eq("status", status);
+      if (spec) query = query.ilike("specialization", `%${spec}%`);
+
+      const { data, error } = await query;
+      if (error) {
+        $("#detail").innerHTML = `<p class="pill danger">❌ لا يمكن جلب البيانات: ${error.message}</p>`;
+        return;
+      }
+
+      // client-side search across common fields
+      currentRows = (data || []).filter(r => {
+        if (!q) return true;
+        const hay = [
+          r.full_name, r.email, r.phone, r.specialization, r.city
+        ].filter(Boolean).join(" ").toLowerCase();
+        return hay.includes(q);
+      });
+
+      $("#count-pill").textContent = currentRows.length;
+
+      const tb = $("#tbl tbody");
+      tb.innerHTML = "";
+      for (const r of currentRows){
+        const tr = document.createElement("tr");
+        tr.style.cursor = "pointer";
+        tr.innerHTML = `
+          <td>${fmtDate(r.created_at)}</td>
+          <td>${r.full_name || ""}</td>
+          <td>${r.specialization || ""}</td>
+          <td>${r.city || ""}</td>
+          <td><span class="pill ${r.status === "new" ? "danger" : "ok"}">${r.status}</span></td>
+        `;
+        tr.addEventListener("click", () => showDetail(r.id));
+        tb.appendChild(tr);
+      }
+
+      if (selectedId) showDetail(selectedId);
+      else $("#detail").innerHTML = `<p class="muted">اختاري طلب من الجدول لعرض التفاصيل.</p>`;
+    }
+
+    async function showDetail(id){
+      selectedId = id;
+      const r = currentRows.find(x => x.id === id);
+      if (!r) return;
+
+      // Signed URL for CV (requires admin storage read policy)
+      let cvLink = "";
+      if (r.cv_path){
+        const { data: signed, error } = await supabase
+          .storage
+          .from("trainer-cv")
+          .createSignedUrl(r.cv_path, 60 * 10); // 10 minutes
+        if (!error && signed?.signedUrl){
+          cvLink = `<a class="btnx secondary" href="${signed.signedUrl}" target="_blank" rel="noopener"><i class="fa-solid fa-file-arrow-down"></i> تحميل السيرة</a>`;
+        } else {
+          cvLink = `<span class="pill muted">تعذر إنشاء رابط ملف (تحقق من سياسات Storage)</span>`;
+        }
+      }
+
+      $("#detail").innerHTML = `
+        <div class="split">
+          <div class="row">
+            <span class="pill">${r.full_name || ""}</span>
+            <span class="pill muted">${r.email || ""}</span>
+            <span class="pill muted">${r.phone || ""}</span>
+          </div>
+          <div class="row">${cvLink}</div>
+        </div>
+        <p><b>التخصص:</b> ${r.specialization || "-"}</p>
+        <p><b>المدينة:</b> ${r.city || "-"}</p>
+        <p><b>سنوات الخبرة:</b> ${r.years_experience ?? "-"}</p>
+        <p><b>طريقة التنفيذ:</b> ${(r.delivery_modes || []).join(" / ") || "-"}</p>
+        <p><b>اللغات:</b> ${(r.languages || []).join(" / ") || "-"}</p>
+        <p><b>LinkedIn:</b> ${r.linkedin_url ? `<a href="${r.linkedin_url}" target="_blank" rel="noopener">${r.linkedin_url}</a>` : "-"}</p>
+        <p><b>Website:</b> ${r.website_url ? `<a href="${r.website_url}" target="_blank" rel="noopener">${r.website_url}</a>` : "-"}</p>
+        <p><b>نبذة:</b><br>${(r.bio || "-").replaceAll("\n","<br>")}</p>
+
+        <hr style="margin:16px 0;border:0;border-top:1px solid rgba(0,0,0,.08)">
+
+        <div class="split">
+          <div class="row">
+            <span class="pill">الحالة الحالية: <b>${r.status}</b></span>
+          </div>
+          <div class="row">
+            <button class="btnx secondary" onclick="updateStatus('${id}','reviewed')">مراجعة</button>
+            <button class="btnx" onclick="updateStatus('${id}','shortlisted')">ترشيح</button>
+            <button class="btnx secondary" onclick="updateStatus('${id}','rejected')">رفض</button>
+          </div>
+        </div>
+      `;
+    }
+
+    window.updateStatus = async (id, newStatus) => {
+      const { error } = await supabase
+        .from("trainer_applications")
+        .update({ status: newStatus, reviewed_at: new Date().toISOString() })
+        .eq("id", id);
+
+      if (error){
+        alert("خطأ: " + error.message);
+        return;
+      }
+      await loadRows();
+    };
+
+    $("#btn-refresh").addEventListener("click", loadRows);
+
+    $("#login-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      $("#login-msg").textContent = "";
+      try{
+        if (!supabaseUrl || !supabaseAnonKey || supabaseAnonKey.includes("PASTE_")) {
+          throw new Error("ضعي SUPABASE_URL و SUPABASE_ANON_KEY داخل ملف supabase_config.js");
+        }
+        const fd = new FormData(e.target);
+        const email = String(fd.get("email")||"").trim();
+        const password = String(fd.get("password")||"");
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+        $("#login-msg").textContent = "تم الدخول ✅";
+        await refreshAuthState();
+      }catch(err){
+        $("#login-msg").textContent = "❌ " + (err?.message || "خطأ");
+      }
+    });
+
+    $("#btn-logout").addEventListener("click", async () => {
+      await supabase.auth.signOut();
+      selectedId = null;
+      currentRows = [];
+      $("#tbl tbody").innerHTML = "";
+      $("#detail").innerHTML = `<p class="muted">اختاري طلب من الجدول لعرض التفاصيل.</p>`;
+      await refreshAuthState();
+    });
+
+    // Load on start
+    refreshAuthState();
+  </script>
+</body>
+</html>

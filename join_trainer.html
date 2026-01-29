@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>انضم كمدرب | نهج</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="styles_v16.css"/>
+
+  <!-- Supabase JS (v2) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase_config.js"></script>
+
+  <style>
+    /* Minimal safe styles (حتى لو styles_v16 ما يغطي الفورم بالكامل) */
+    .page-wrap{max-width:960px;margin:0 auto;padding:28px 16px;}
+    .card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:16px;padding:18px;box-shadow:0 8px 28px rgba(0,0,0,.06)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    label{display:block;font-weight:600;margin:8px 0 6px}
+    input,select,textarea{
+      width:100%;padding:12px 12px;border-radius:12px;border:1px solid rgba(0,0,0,.14);
+      outline:none;background:#fff
+    }
+    textarea{min-height:120px;resize:vertical}
+    .hint{font-size:.9rem;opacity:.8}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-top:14px}
+    .btnx{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:12px 16px;border-radius:999px;border:0;cursor:pointer;
+      background:var(--nahj-gold, #C9A24D);color:#2B1A0F;font-weight:700
+    }
+    .btnx.secondary{background:transparent;border:1px solid rgba(0,0,0,.14)}
+    .status{margin-top:12px;padding:12px;border-radius:12px;display:none}
+    .status.ok{display:block;background:rgba(46,125,50,.08);border:1px solid rgba(46,125,50,.28)}
+    .status.bad{display:block;background:rgba(198,40,40,.08);border:1px solid rgba(198,40,40,.28)}
+    .req{color:#b3261e}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{padding:8px 10px;border-radius:999px;border:1px solid rgba(0,0,0,.14);cursor:pointer;user-select:none}
+    .chip[data-on="1"]{background:rgba(201,162,77,.18);border-color:rgba(201,162,77,.55)}
+    .topline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+    .topline a{color:inherit;text-decoration:none}
+  </style>
+</head>
+
+<body>
+  <!-- Header بسيط (نفس شعار نهج) -->
+  <header class="main-navbar">
+    <div class="container">
+      <nav class="navbar">
+        <a aria-label="العودة للرئيسية" class="logo logo-link" href="index.html">
+          <img alt="شعار نهج" src="picnahj.png"/>
+          <div class="logo-tagline">
+            <span class="logo-line1">نهج للتدريب والتثقيف الصحي</span>
+            <span aria-hidden="true" class="logo-midline"></span>
+            <span class="logo-line2">لخدمات الأعمال</span>
+          </div>
+        </a>
+        <div class="extras">
+          <a class="lang-toggle" href="index.html">الرئيسية</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <div class="topline">
+      <h1 style="margin:0">نموذج الانضمام كمدرب</h1>
+      <a class="hint" href="admin_dashboard.html" title="لوحة تحكم المشرف">لوحة المشرف</a>
+    </div>
+
+    <div class="card">
+      <p class="hint" style="margin-top:0">
+        املأ البيانات وارفق سيرتك الذاتية. سيتم مراجعة الطلب والتواصل معك عند وجود احتياج تدريبي.
+      </p>
+
+      <form id="trainer-form">
+        <div class="grid">
+          <div>
+            <label>الاسم الكامل <span class="req">*</span></label>
+            <input name="full_name" required placeholder="مثال: محمد أحمد" />
+          </div>
+          <div>
+            <label>رقم الجوال <span class="req">*</span></label>
+            <input name="phone" required placeholder="05xxxxxxxx" />
+          </div>
+
+          <div>
+            <label>البريد الإلكتروني <span class="req">*</span></label>
+            <input type="email" name="email" required placeholder="name@email.com" />
+          </div>
+          <div>
+            <label>المدينة</label>
+            <input name="city" placeholder="الرياض" />
+          </div>
+
+          <div>
+            <label>التخصص الرئيسي <span class="req">*</span></label>
+            <input name="specialization" required placeholder="مثال: موارد بشرية / سلامة / PMP ..." />
+          </div>
+          <div>
+            <label>سنوات الخبرة</label>
+            <input type="number" name="years_experience" min="0" max="60" placeholder="0" />
+          </div>
+
+          <div>
+            <label>طريقة التنفيذ</label>
+            <div class="chips" id="delivery-chips">
+              <div class="chip" data-value="onsite">حضوري</div>
+              <div class="chip" data-value="online">عن بُعد</div>
+              <div class="chip" data-value="hybrid">هجين</div>
+            </div>
+            <div class="hint">اختاري أكثر من خيار لو ينطبق</div>
+          </div>
+
+          <div>
+            <label>اللغة</label>
+            <div class="chips" id="lang-chips">
+              <div class="chip" data-value="ar">عربي</div>
+              <div class="chip" data-value="en">English</div>
+            </div>
+          </div>
+
+          <div style="grid-column:1/-1">
+            <label>نبذة مختصرة</label>
+            <textarea name="bio" placeholder="اكتب عن خبراتك ومجالاتك التدريبية..."></textarea>
+          </div>
+
+          <div style="grid-column:1/-1">
+            <label>روابط (اختياري)</label>
+            <div class="grid">
+              <div>
+                <input name="linkedin_url" placeholder="LinkedIn URL" />
+              </div>
+              <div>
+                <input name="website_url" placeholder="Website / Portfolio URL" />
+              </div>
+            </div>
+          </div>
+
+          <div style="grid-column:1/-1">
+            <label>السيرة الذاتية (PDF/DOC/DOCX) <span class="req">*</span></label>
+            <input type="file" name="cv" required accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+            <div class="hint">حد أقصى مقترح: 5MB</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <button class="btnx" type="submit"><i class="fa-solid fa-paper-plane"></i> إرسال الطلب</button>
+          <a class="btnx secondary" href="index.html"><i class="fa-solid fa-arrow-right"></i> رجوع للموقع</a>
+        </div>
+
+        <div id="status-ok" class="status ok">تم إرسال طلبك بنجاح ✅</div>
+        <div id="status-bad" class="status bad">حصل خطأ ❌ <span id="err-msg"></span></div>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    // Supabase client
+    const supabaseUrl = window.SUPABASE_URL;
+    const supabaseAnonKey = window.SUPABASE_ANON_KEY;
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
+
+    const $ = (s) => document.querySelector(s);
+    const chipsToArray = (wrapId) => {
+      return Array.from(document.querySelectorAll(`#${wrapId} .chip[data-on="1"]`))
+        .map(el => el.dataset.value);
+    };
+
+    const toggleChip = (el) => {
+      const on = el.getAttribute("data-on") === "1";
+      el.setAttribute("data-on", on ? "0" : "1");
+    };
+
+    // chips handlers
+    document.querySelectorAll("#delivery-chips .chip, #lang-chips .chip").forEach(ch => {
+      ch.addEventListener("click", () => toggleChip(ch));
+    });
+
+    $("#trainer-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      $("#status-ok").style.display = "none";
+      $("#status-bad").style.display = "none";
+      $("#err-msg").textContent = "";
+
+      try {
+        if (!supabaseUrl || !supabaseAnonKey || supabaseAnonKey.includes("PASTE_")) {
+          throw new Error("ضعي SUPABASE_URL و SUPABASE_ANON_KEY داخل ملف supabase_config.js");
+        }
+
+        const fd = new FormData(e.target);
+        const full_name = String(fd.get("full_name") || "").trim();
+        const phone = String(fd.get("phone") || "").trim();
+        const email = String(fd.get("email") || "").trim();
+        const city = String(fd.get("city") || "").trim();
+        const specialization = String(fd.get("specialization") || "").trim();
+        const years_experience = fd.get("years_experience") ? Number(fd.get("years_experience")) : null;
+        const bio = String(fd.get("bio") || "").trim();
+        const linkedin_url = String(fd.get("linkedin_url") || "").trim();
+        const website_url = String(fd.get("website_url") || "").trim();
+        const delivery_modes = chipsToArray("delivery-chips");
+        const languages = chipsToArray("lang-chips");
+
+        const file = fd.get("cv");
+        if (!(file instanceof File) || !file.name) throw new Error("ارفاق السيرة الذاتية مطلوب.");
+
+        // Size check (5MB)
+        if (file.size > 5 * 1024 * 1024) {
+          throw new Error("حجم الملف كبير. فضلاً ارفع ملف أقل من 5MB.");
+        }
+
+        // Create id now to reuse in storage path
+        const appId = crypto.randomUUID();
+
+        // Upload CV to Storage bucket (private)
+        const ext = (file.name.split(".").pop() || "pdf").toLowerCase();
+        const safeExt = ["pdf","doc","docx"].includes(ext) ? ext : "pdf";
+        const objectPath = `applications/${appId}/cv.${safeExt}`;
+
+        const { error: upErr } = await supabase
+          .storage
+          .from("trainer-cv")
+          .upload(objectPath, file, { upsert: true, contentType: file.type || "application/octet-stream" });
+
+        if (upErr) throw upErr;
+
+        // Insert application row
+        const payload = {
+          id: appId,
+          full_name, phone, email,
+          city: city || null,
+          specialization,
+          years_experience,
+          bio: bio || null,
+          linkedin_url: linkedin_url || null,
+          website_url: website_url || null,
+          delivery_modes,
+          languages,
+          cv_path: objectPath,
+          status: "new"
+        };
+
+        const { error: insErr } = await supabase
+          .from("trainer_applications")
+          .insert([payload]);
+
+        if (insErr) throw insErr;
+
+        $("#status-ok").style.display = "block";
+        e.target.reset();
+        // Reset chips
+        document.querySelectorAll(".chip").forEach(el => el.setAttribute("data-on", "0"));
+      } catch (err) {
+        console.error(err);
+        $("#status-bad").style.display = "block";
+        $("#err-msg").textContent = (err && err.message) ? `(${err.message})` : "";
+      }
+    });
+  </script>
+</body>
+</html>
