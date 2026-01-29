@@ -5180,3 +5180,107 @@ html[dir="ltr"] .footer-column a{
     margin-right: 0 !important;
   }
 }
+
+
+/* ✅ FIX: Mobile About/Vision labels translate with language (dir) */
+@media (max-width: 520px){
+
+  /* Arabic default (RTL) */
+  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(1)::before { content: "--- من نحن" !important; }
+  .nahj-about-wrapper .u12-34c686 > div:nth-of-type(2)::before { content: "--- رؤيتنا" !important; }
+
+  /* English (LTR) */
+  html[dir="ltr"] .nahj-about-wrapper .u12-34c686 > div:nth-of-type(1)::before { content: "--- Who We Are" !important; }
+  html[dir="ltr"] .nahj-about-wrapper .u12-34c686 > div:nth-of-type(2)::before { content: "--- Our Vision" !important; }
+
+  /* ✅ Mobile alignment when EN */
+  html[dir="ltr"] .nahj-about-wrapper .u12-34c686 p { text-align: left !important; }
+  html[dir="ltr"] .nahj-about-wrapper .u12-34c686 { text-align: left !important; }
+}
+
+
+
+/* =====================================
+   ✅ FIX: Ops titles (Prep / Ops / Output)
+   Translate correctly on mobile
+===================================== */
+@media (max-width: 768px){
+
+  /* Arabic (RTL) */
+  .col-prep h3,
+  .col-prep .ops-title {
+    content: none;
+  }
+
+  /* English titles */
+  html[dir="ltr"] .col-prep h3,
+  html[dir="ltr"] .col-prep .ops-title {
+    direction: ltr;
+    text-align: left;
+  }
+
+  /* Override visible labels */
+  .col-prep::before { content: "التحضير"; }
+  .col-ops::before { content: "التشغيل"; }
+  .col-output::before { content: "المخرجات"; }
+
+  html[dir="ltr"] .col-prep::before { content: "Preparation"; }
+  html[dir="ltr"] .col-ops::before { content: "Operations"; }
+  html[dir="ltr"] .col-output::before { content: "Outputs"; }
+
+  /* styling */
+  .col-prep::before,
+  .col-ops::before,
+  .col-output::before {
+    display: block;
+    font-weight: 600;
+    color: var(--nahj-gold);
+    margin-bottom: 12px;
+    text-align: inherit;
+  }
+}
+
+
+
+@media (max-width: 768px){
+
+  /* Arabic */
+  html[dir="rtl"] .col-prep::before { content: "التحضير" !important; }
+  html[dir="rtl"] .col-ops::before  { content: "التشغيل" !important; }
+  html[dir="rtl"] .col-output::before { content: "المخرجات" !important; }
+
+  /* English */
+  html[dir="ltr"] .col-prep::before { content: "Preparation" !important; }
+  html[dir="ltr"] .col-ops::before  { content: "Operations" !important; }
+  html[dir="ltr"] .col-output::before { content: "Outputs" !important; }
+
+  .col-prep::before, .col-ops::before, .col-output::before{
+    display:block;
+    margin: 0 0 12px 0;
+    font-weight:700;
+    color: var(--nahj-gold);
+    text-decoration: underline;
+    text-underline-offset: 10px;
+  }
+
+  html[dir="rtl"] .col-prep::before, 
+  html[dir="rtl"] .col-ops::before,
+  html[dir="rtl"] .col-output::before{ text-align:right; }
+
+  html[dir="ltr"] .col-prep::before, 
+  html[dir="ltr"] .col-ops::before,
+  html[dir="ltr"] .col-output::before{ text-align:left; }
+}
+
+
+
+/* ✅ CSS-only translation for: "إعداد تقارير الأداء والتقييم" */
+html[dir="ltr"] #list-output li[data-i18n="list_output_3"]{
+  font-size: 0 !important;   /* يخفي النص العربي بدون ما يحذف السطر */
+}
+
+html[dir="ltr"] #list-output li[data-i18n="list_output_3"]::after{
+  content: "Prepare performance and evaluation reports";
+  font-size: 16px;           /* رجّعيها حسب حجم قائمتك */
+  color: inherit;
+}
