@@ -5815,3 +5815,16 @@ i,
     display:none !important;
   }
 }
+
+
+/* ✅ اخفي زر "انضم كمدرب" (نسخة الجوال داخل nav-links) في الديسكتوب */
+.nav-links li.nav-join{
+  display: none !important;
+}
+
+/* ✅ أظهره فقط في الجوال */
+@media (max-width: 820px){
+  .nav-links li.nav-join{
+    display: list-item !important;
+  }
+}
