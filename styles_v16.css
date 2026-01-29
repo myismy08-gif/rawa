@@ -5828,3 +5828,36 @@ i,
     display: list-item !important;
   }
 }
+
+
+
+/* ===============================
+   FIX: فلسفتنا بالجوال – Tajawal فقط
+   =============================== */
+@media (max-width: 980px){
+  .nahj-philo,
+  .nahj-philo *{
+    font-family: "Tajawal", system-ui, sans-serif !important;
+    letter-spacing: 0 !important;
+  }
+
+  .nahj-philo-text h2{
+    font-weight: 700 !important;
+  }
+
+  .nahj-philo-text p{
+    font-size: 15.5px !important;
+    line-height: 1.9 !important;
+  }
+}
+
+
+
+/* ===============================
+   FIX: تثبيت صورة الهيرو بالإنجليزي
+   =============================== */
+html[lang="en"] .hero-bg-img{
+  content: none !important;
+  display: block !important;
+  object-fit: cover !important;
+}
