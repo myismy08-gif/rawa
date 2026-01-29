@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-
 <html dir="rtl" lang="ar">
 <head>
-<meta charset="utf-8"/>
-<title>نهج | إدارة المشاريع</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/><link href="styles_v16.css" rel="stylesheet"/>
-<link rel="stylesheet" href="styles_v16.css"/>
-<style>body {
+  <meta charset="utf-8"/>
+  <title>نهج | الاعتمادات والشهادات</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="styles_v16.css"/>
+ 
+
+  <style>
+
+    body {
       margin: 0;
       font-family: 'Tajawal', sans-serif;
       background: #FBF7F0;
@@ -20,15 +24,16 @@
     .axis-container{
       width: 100%;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 24px; /* مساحة جانبية للراحة */
     }
 
-    /* ✅ المستطيل الرئيسي فقط (الصورة + المحتوى) */
+    /* ✅ المستطيل الثاني فقط (الصورة + المحتوى) */
     .axis-content{
       background: #fff;
       border: 1px solid rgba(201,162,77,.25);
       border-radius: 22px;
 
+      /* ✅ الأبيض يتوسع بدون ما يخرب القراءة */
       width: 100%;
       max-width: 1500px;
       margin: 0 auto;
@@ -38,14 +43,12 @@
       color: rgba(43,26,15,.88);
       font-size: 17px;
 
-      /* ✅ مهم جداً عشان RTL/LTR يتغير مع الزر */
+      /* ✅ خلي الاتجاه يتبع لغة الصفحة */
       direction: inherit;
 
       display: flex;
       flex-direction: column;
       gap: 40px;
-
-      overflow: hidden;
     }
 
     .axis-section{
@@ -112,7 +115,10 @@
         text-align: justify;
       }
     }
-</style>
+
+   
+  
+  </style>
 </head>
 <body>
 <!-- ====== HEADER ====== -->
