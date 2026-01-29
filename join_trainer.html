@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>انضم كمدرب | نهج</title>
 
-  <!-- Optional: reuse your site styling if available -->
   <link rel="stylesheet" href="styles_v16.css" />
 
   <style>
-    /* Lightweight page styling (won't break your main CSS) */
     :root{
       --nahj-brown:#4A2A14;
       --nahj-brown-dark:#3B1F0E;
@@ -31,12 +29,14 @@
     }
     h1{ font-size: 22px; margin: 0 0 8px; color: var(--nahj-brown-dark); }
     .sub{ color: var(--nahj-muted); margin: 0 0 18px; line-height: 1.6; }
+
     .grid{
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
     @media (max-width: 720px){ .grid{ grid-template-columns: 1fr; } }
+
     label{ display:block; font-size: 13px; margin: 2px 0 6px; color: var(--nahj-brown-dark); }
     input, textarea, select{
       width: 100%;
@@ -49,7 +49,15 @@
       font-size: 14px;
     }
     textarea{ min-height: 110px; resize: vertical; }
-    .row{ display:flex; gap:10px; align-items:center; justify-content:flex-end; flex-wrap: wrap; margin-top: 14px; }
+
+    .row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-end;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
     .btn{
       border: 0;
       border-radius: 12px;
@@ -66,12 +74,14 @@
       color: var(--nahj-brown-dark);
       border: 1px solid var(--nahj-border);
     }
+
     .note{
       font-size: 12px;
       color: var(--nahj-muted);
       margin-top: 10px;
       line-height: 1.6;
     }
+
     .status{
       display:none;
       margin-top: 12px;
@@ -92,79 +102,79 @@
   <main class="page">
     <div class="card">
       <h1>انضم كمدرب</h1>
+
       <p class="sub">
-        عبّي اللي تقدر عليه فقط — <strong>ولا خانة إلزامية</strong>. حتى لو ما كتبت/رفقت شيء، يقدر ينوصل الطلب.
+        يرجى تعبئة البيانات المتاحة. يمكن إرسال الطلب حتى في حال عدم إدخال أو إرفاق أي بيانات.
       </p>
 
       <form id="join-trainer-form" novalidate>
         <div class="grid">
           <div>
-            <label>الاسم (اختياري)</label>
+            <label>الاسم</label>
             <input name="full_name" autocomplete="name" placeholder="مثال: محمد أحمد" />
           </div>
 
           <div>
-            <label>رقم الجوال (اختياري)</label>
-            <input name="phone" autocomplete="tel" placeholder="05xxxxxxxx" />
+            <label>رقم الجوال</label>
+            <input name="phone" autocomplete="tel" placeholder="مثال: 05xxxxxxxx" />
           </div>
 
           <div>
-            <label>البريد الإلكتروني (اختياري)</label>
-            <input name="email" autocomplete="email" placeholder="name@example.com" />
+            <label>البريد الإلكتروني</label>
+            <input name="email" autocomplete="email" placeholder="مثال: name@example.com" />
           </div>
 
           <div>
-            <label>المدينة (اختياري)</label>
+            <label>المدينة</label>
             <input name="city" placeholder="مثال: الرياض" />
           </div>
 
           <div>
-            <label>التخصص/المجال (اختياري)</label>
+            <label>التخصص/المجال</label>
             <input name="specialization" placeholder="مثال: إدارة مشاريع / سلامة / موارد بشرية" />
           </div>
 
           <div>
-            <label>سنوات الخبرة (اختياري)</label>
+            <label>سنوات الخبرة</label>
             <input name="years_experience" inputmode="numeric" placeholder="مثال: 5" />
           </div>
 
           <div style="grid-column: 1 / -1;">
-            <label>نبذة مختصرة (اختياري)</label>
-            <textarea name="bio" placeholder="اكتب نبذة بسيطة عن خبرتك واهتماماتك التدريبية..."></textarea>
+            <label>نبذة مختصرة</label>
+            <textarea name="bio" placeholder="يرجى كتابة نبذة موجزة عن الخبرة والاهتمامات التدريبية."></textarea>
           </div>
 
           <div>
-            <label>LinkedIn (اختياري)</label>
+            <label>LinkedIn</label>
             <input name="linkedin_url" placeholder="https://linkedin.com/in/..." />
           </div>
 
           <div>
-            <label>موقع/بورتفوليو (اختياري)</label>
+            <label>موقع/بورتفوليو</label>
             <input name="website_url" placeholder="https://..." />
           </div>
 
           <div style="grid-column: 1 / -1;">
-            <label>السيرة الذاتية (اختياري)</label>
+            <label>السيرة الذاتية</label>
             <input type="file" name="cv" accept=".pdf,.doc,.docx" />
-            <div class="note">مسموح PDF أو Word. الرفع اختياري.</div>
+            <div class="note">الصيغ المدعومة: PDF أو Word.</div>
           </div>
         </div>
 
         <div class="row">
-          <button class="btn btn-ghost" type="reset">مسح</button>
+          <button class="btn btn-ghost" type="reset">إعادة ضبط</button>
           <button class="btn btn-primary" type="submit">إرسال الطلب</button>
         </div>
 
         <div id="form-status" class="status"></div>
 
         <div class="note">
-          ملاحظة: البيانات تُستخدم فقط لفرز المدربين عند الحاجة التدريبية.
+          ملاحظة: تُستخدم البيانات لأغراض فرز المدربين وتقييم الملاءمة عند الحاجة التدريبية.
         </div>
       </form>
     </div>
   </main>
 
-  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase_config.js"></script>
   <script src="join_trainer_submit.js"></script>
