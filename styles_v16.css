@@ -5674,3 +5674,19 @@ html[dir="ltr"] .nahj-card{
 html[dir="ltr"] .nav-dropdown-title[data-i18n="axes_menu_title"]{
   text-align: left !important;
 }
+
+
+
+
+/* ✅ MOBILE ONLY: نزّل الهيرو تحت الهيدر */
+@media (max-width: 980px){
+  /* إذا الهيدر fixed/sticky، نعوّض ارتفاعه */
+  main.contact-page{
+    padding-top: 84px; /* عدّليها حسب ارتفاع الهيدر عندك */
+  }
+
+  /* احتياط: لو الهيرو نفسه لازق زيادة */
+  .contact-hero{
+    margin-top: 0 !important;
+  }
+}
