@@ -4827,6 +4827,9 @@ html[dir="ltr"] .footer-column a{
 
 
 
+
+
+
 /* ✅ DESKTOP: خلّي اللوقو نفس شكل الجوال (الجوال هو النموذج) */
 @media (min-width: 981px){
 
@@ -5796,4 +5799,19 @@ i,
 [class^="fa-"], [class*=" fa-"]::before,
 [class^="fa-"], [class*=" fa-"]::after{
   font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+}
+
+
+
+@media (max-width: 820px){
+
+  /* ✅ أخفي "شركاؤنا" من الهيدر */
+  .nav-links a[data-i18n="nav_partners"]{
+    display:none !important;
+  }
+
+  /* ✅ عشان ما يترك فراغ/مسافة داخل القائمة (أفضل) */
+  .nav-links > li:nth-child(4){
+    display:none !important;
+  }
 }
