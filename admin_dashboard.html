@@ -5,303 +5,189 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>لوحة تحكم المدربين | نهج</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <link rel="stylesheet" href="styles_v16.css"/>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="supabase_config.js"></script>
-
+  <link rel="stylesheet" href="styles_v16.css" />
   <style>
-    .page-wrap{max-width:1200px;margin:0 auto;padding:28px 16px;}
-    .card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:16px;padding:16px;box-shadow:0 8px 28px rgba(0,0,0,.06)}
-    .grid{display:grid;grid-template-columns:340px 1fr;gap:14px}
-    @media (max-width:980px){.grid{grid-template-columns:1fr}}
-    input,select,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid rgba(0,0,0,.14)}
-    table{width:100%;border-collapse:collapse}
-    th,td{padding:10px;border-bottom:1px solid rgba(0,0,0,.08);vertical-align:top}
-    th{white-space:nowrap;text-align:right}
-    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    .btnx{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;border:0;cursor:pointer;background:var(--nahj-gold, #C9A24D);color:#2B1A0F;font-weight:800}
-    .btnx.secondary{background:transparent;border:1px solid rgba(0,0,0,.14)}
-    .pill{padding:6px 10px;border-radius:999px;border:1px solid rgba(0,0,0,.12);font-size:.9rem}
-    .muted{opacity:.75}
-    .danger{background:rgba(198,40,40,.10);border:1px solid rgba(198,40,40,.25)}
-    .ok{background:rgba(46,125,50,.10);border:1px solid rgba(46,125,50,.25)}
-    .split{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;align-items:center}
-    .detail p{margin:.35rem 0}
-    .detail a{word-break:break-all}
+    :root{
+      --nahj-brown:#4A2A14;
+      --nahj-brown-dark:#3B1F0E;
+      --nahj-gold:#C9A24D;
+      --nahj-bg:#F9F6F1;
+      --nahj-card:#FFFFFF;
+      --nahj-border:#EAE6DD;
+      --nahj-text:#2B1A0F;
+      --nahj-muted:#7A6E66;
+    }
+    body{ background: var(--nahj-bg); color: var(--nahj-text); }
+    .wrap{ max-width: 1180px; margin: 0 auto; padding: 24px 14px 50px; }
+    .topbar{
+      display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+      margin-bottom: 14px;
+    }
+    .brand{ font-weight: 800; color: var(--nahj-brown-dark); }
+    .card{
+      background: var(--nahj-card);
+      border: 1px solid var(--nahj-border);
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.05);
+      padding: 16px;
+    }
+    .grid{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+    @media (max-width: 900px){ .grid{ grid-template-columns: 1fr; } }
+    label{ display:block; font-size: 13px; margin: 2px 0 6px; color: var(--nahj-brown-dark); }
+    input, select{
+      width:100%; box-sizing:border-box;
+      padding: 11px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--nahj-border);
+      background:#fff;
+      font-size: 14px;
+    }
+    .row{ display:flex; gap:10px; align-items:center; justify-content:flex-end; flex-wrap:wrap; margin-top: 12px; }
+    .btn{
+      border:0; border-radius: 12px; padding: 11px 14px; font-weight: 800; cursor:pointer;
+    }
+    .btn-primary{ background: var(--nahj-brown-dark); color:#fff; }
+    .btn-ghost{ background: transparent; border:1px solid var(--nahj-border); color: var(--nahj-brown-dark); }
+    .muted{ color: var(--nahj-muted); font-size: 12px; line-height: 1.6; }
+    .status{
+      display:none;
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--nahj-border);
+      background: #fff;
+      color: var(--nahj-text);
+      line-height: 1.6;
+      font-size: 13px;
+    }
+    .status.ok{ border-color: rgba(30,160,90,.25); }
+    .status.err{ border-color: rgba(200,60,60,.25); }
+
+    table{ width:100%; border-collapse: collapse; margin-top: 14px; background:#fff; border:1px solid var(--nahj-border); border-radius: 14px; overflow:hidden; }
+    th, td{ padding: 10px 10px; border-bottom: 1px solid var(--nahj-border); text-align:right; vertical-align: top; font-size: 13px; }
+    th{ background: rgba(201,162,77,.12); color: var(--nahj-brown-dark); font-weight: 900; }
+    tr:last-child td{ border-bottom: none; }
+    .pill{
+      display:inline-block; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--nahj-border);
+      font-size: 12px; color: var(--nahj-brown-dark); background: #fff;
+    }
+    .actions{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+    .btn-sm{ padding: 8px 10px; border-radius: 10px; font-weight: 800; font-size: 12px; }
+    .linkish{ text-decoration: underline; cursor: pointer; color: var(--nahj-brown-dark); }
+    .hidden{ display:none !important; }
+    .login-card{ max-width: 520px; margin: 0 auto; }
   </style>
 </head>
-
 <body>
-  <header class="main-navbar">
-    <div class="container">
-      <nav class="navbar">
-        <a aria-label="العودة للرئيسية" class="logo logo-link" href="index.html">
-          <img alt="شعار نهج" src="picnahj.png"/>
-          <div class="logo-tagline">
-            <span class="logo-line1">نهج للتدريب والتثقيف الصحي</span>
-            <span aria-hidden="true" class="logo-midline"></span>
-            <span class="logo-line2">لخدمات الأعمال</span>
-          </div>
-        </a>
-        <div class="extras">
-          <a class="lang-toggle" href="join_trainer.html">نموذج التقديم</a>
-        </div>
-      </nav>
-    </div>
-  </header>
+  <div class="wrap">
 
-  <main class="page-wrap">
-    <div class="split">
-      <h1 style="margin:0">لوحة تحكم المدربين</h1>
+    <div class="topbar">
+      <div class="brand">لوحة تحكم المدربين</div>
       <div class="row">
-        <span id="auth-state" class="pill muted">غير مسجل</span>
-        <button id="btn-logout" class="btnx secondary" style="display:none"><i class="fa-solid fa-right-from-bracket"></i> خروج</button>
+        <button id="btn-signout" class="btn btn-ghost hidden" type="button">تسجيل خروج</button>
       </div>
     </div>
 
-    <div class="grid" style="margin-top:14px">
-      <!-- Left: Login + Filters -->
-      <div class="card">
-        <h3 style="margin-top:0">دخول المشرف</h3>
-        <form id="login-form">
-          <label>البريد</label>
-          <input name="email" type="email" autocomplete="username" placeholder="admin@email.com" required />
-          <label style="margin-top:10px">كلمة المرور</label>
-          <input name="password" type="password" autocomplete="current-password" required />
-          <div class="row" style="margin-top:12px">
-            <button class="btnx" type="submit"><i class="fa-solid fa-lock"></i> دخول</button>
-          </div>
-          <p class="muted" id="login-msg" style="margin:10px 0 0"></p>
-        </form>
+    <!-- LOGIN -->
+    <div id="login-view" class="card login-card">
+      <h2 style="margin:0 0 8px; color: var(--nahj-brown-dark); font-size: 18px;">دخول المشرف</h2>
+      <p class="muted" style="margin:0 0 12px;">
+        الدخول عبر إيميل/كلمة مرور (Supabase Auth). بعد الدخول، النظام يتأكد أنك ضمن جدول <code>admins</code>.
+      </p>
 
-        <hr style="margin:16px 0;border:0;border-top:1px solid rgba(0,0,0,.08)">
-
-        <h3 style="margin-top:0">فلترة</h3>
-        <label>بحث</label>
-        <input id="q" placeholder="اسم / بريد / جوال / تخصص" />
-        <label style="margin-top:10px">الحالة</label>
-        <select id="status">
-          <option value="">الكل</option>
-          <option value="new">جديد</option>
-          <option value="reviewed">تمت المراجعة</option>
-          <option value="shortlisted">مرشح</option>
-          <option value="rejected">مرفوض</option>
-        </select>
-        <label style="margin-top:10px">التخصص</label>
-        <input id="spec" placeholder="مثال: موارد بشرية" />
-        <div class="row" style="margin-top:12px">
-          <button id="btn-refresh" class="btnx secondary" type="button"><i class="fa-solid fa-rotate"></i> تحديث</button>
+      <div class="grid">
+        <div>
+          <label>البريد الإلكتروني</label>
+          <input id="login-email" type="email" autocomplete="email" placeholder="name@example.com">
         </div>
-
-        <p class="muted" style="margin-top:12px">ملاحظة: لازم تضيفي المشرف في جدول admins داخل Supabase.</p>
+        <div>
+          <label>كلمة المرور</label>
+          <input id="login-pass" type="password" autocomplete="current-password" placeholder="••••••••">
+        </div>
       </div>
 
-      <!-- Right: Table + Details -->
+      <div class="row">
+        <button id="btn-login" class="btn btn-primary" type="button">دخول</button>
+      </div>
+
+      <div id="login-status" class="status"></div>
+      <p class="muted" style="margin-top:10px;">
+        أول مرة: من Supabase → Authentication → Users → Add user ثم أضيفي UID في جدول admins.
+      </p>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="dash-view" class="hidden">
       <div class="card">
-        <div class="split">
-          <h3 style="margin:0">الطلبات</h3>
-          <span class="pill" id="count-pill">0</span>
+        <h2 style="margin:0 0 8px; color: var(--nahj-brown-dark); font-size: 18px;">الطلبات</h2>
+        <p class="muted" style="margin:0 0 12px;">
+          بحث + فرز حسب التخصص/المدينة/الحالة. تنزيل الـ CV يتم برابط مؤقت (Signed URL) لأنه Bucket خاص.
+        </p>
+
+        <div class="grid">
+          <div>
+            <label>بحث عام (اسم/جوال/ايميل)</label>
+            <input id="f-search" placeholder="اكتب كلمة بحث..." />
+          </div>
+
+          <div>
+            <label>التخصص/المجال</label>
+            <input id="f-spec" placeholder="مثال: إدارة مشاريع" />
+          </div>
+
+          <div>
+            <label>المدينة</label>
+            <input id="f-city" placeholder="مثال: الرياض" />
+          </div>
+
+          <div>
+            <label>الحالة</label>
+            <select id="f-status">
+              <option value="">الكل</option>
+              <option value="new">جديد</option>
+              <option value="shortlisted">مرشح</option>
+              <option value="contacted">تم التواصل</option>
+              <option value="rejected">مرفوض</option>
+              <option value="archived">مؤرشف</option>
+            </select>
+          </div>
         </div>
 
-        <div style="overflow:auto;margin-top:10px">
-          <table id="tbl">
-            <thead>
-              <tr>
-                <th>التاريخ</th>
-                <th>الاسم</th>
-                <th>التخصص</th>
-                <th>المدينة</th>
-                <th>الحالة</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
+        <div class="row">
+          <button id="btn-refresh" class="btn btn-ghost" type="button">تحديث</button>
+          <button id="btn-apply" class="btn btn-primary" type="button">تطبيق الفلاتر</button>
         </div>
 
-        <hr style="margin:16px 0;border:0;border-top:1px solid rgba(0,0,0,.08)">
+        <div id="dash-status" class="status"></div>
 
-        <div class="detail" id="detail">
-          <p class="muted">اختاري طلب من الجدول لعرض التفاصيل.</p>
+        <div class="muted" id="count-line" style="margin-top:10px;"></div>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 140px;">التاريخ</th>
+              <th>المدرب</th>
+              <th style="width: 220px;">التخصص / المدينة</th>
+              <th style="width: 120px;">الحالة</th>
+              <th style="width: 260px;">إجراءات</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <tr><td colspan="5" class="muted">—</td></tr>
+          </tbody>
+        </table>
+
+        <div class="muted" style="margin-top: 10px;">
+          * يتم عرض آخر 200 طلب فقط (لحماية الأداء). إذا تبين Pagination أضيفها لك.
         </div>
       </div>
     </div>
-  </main>
 
-  <script>
-    const supabaseUrl = window.SUPABASE_URL;
-    const supabaseAnonKey = window.SUPABASE_ANON_KEY;
-    const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
+  </div>
 
-    const $ = (s) => document.querySelector(s);
-    const fmtDate = (iso) => {
-      try { return new Date(iso).toLocaleString("ar-SA"); } catch { return iso; }
-    };
-
-    let currentRows = [];
-    let selectedId = null;
-
-    async function refreshAuthState(){
-      const { data: { session } } = await supabase.auth.getSession();
-      const loggedIn = !!session?.user?.id;
-      $("#auth-state").textContent = loggedIn ? ("مسجل: " + session.user.email) : "غير مسجل";
-      $("#btn-logout").style.display = loggedIn ? "inline-flex" : "none";
-      $("#login-form").style.display = loggedIn ? "none" : "block";
-      if (loggedIn) await loadRows();
-    }
-
-    async function loadRows(){
-      const q = $("#q").value.trim().toLowerCase();
-      const status = $("#status").value;
-      const spec = $("#spec").value.trim().toLowerCase();
-
-      // Base query (admins only via RLS)
-      let query = supabase
-        .from("trainer_applications")
-        .select("*")
-        .order("created_at", { ascending: false })
-        .limit(200);
-
-      if (status) query = query.eq("status", status);
-      if (spec) query = query.ilike("specialization", `%${spec}%`);
-
-      const { data, error } = await query;
-      if (error) {
-        $("#detail").innerHTML = `<p class="pill danger">❌ لا يمكن جلب البيانات: ${error.message}</p>`;
-        return;
-      }
-
-      // client-side search across common fields
-      currentRows = (data || []).filter(r => {
-        if (!q) return true;
-        const hay = [
-          r.full_name, r.email, r.phone, r.specialization, r.city
-        ].filter(Boolean).join(" ").toLowerCase();
-        return hay.includes(q);
-      });
-
-      $("#count-pill").textContent = currentRows.length;
-
-      const tb = $("#tbl tbody");
-      tb.innerHTML = "";
-      for (const r of currentRows){
-        const tr = document.createElement("tr");
-        tr.style.cursor = "pointer";
-        tr.innerHTML = `
-          <td>${fmtDate(r.created_at)}</td>
-          <td>${r.full_name || ""}</td>
-          <td>${r.specialization || ""}</td>
-          <td>${r.city || ""}</td>
-          <td><span class="pill ${r.status === "new" ? "danger" : "ok"}">${r.status}</span></td>
-        `;
-        tr.addEventListener("click", () => showDetail(r.id));
-        tb.appendChild(tr);
-      }
-
-      if (selectedId) showDetail(selectedId);
-      else $("#detail").innerHTML = `<p class="muted">اختاري طلب من الجدول لعرض التفاصيل.</p>`;
-    }
-
-    async function showDetail(id){
-      selectedId = id;
-      const r = currentRows.find(x => x.id === id);
-      if (!r) return;
-
-      // Signed URL for CV (requires admin storage read policy)
-      let cvLink = "";
-      if (r.cv_path){
-        const { data: signed, error } = await supabase
-          .storage
-          .from("trainer-cv")
-          .createSignedUrl(r.cv_path, 60 * 10); // 10 minutes
-        if (!error && signed?.signedUrl){
-          cvLink = `<a class="btnx secondary" href="${signed.signedUrl}" target="_blank" rel="noopener"><i class="fa-solid fa-file-arrow-down"></i> تحميل السيرة</a>`;
-        } else {
-          cvLink = `<span class="pill muted">تعذر إنشاء رابط ملف (تحقق من سياسات Storage)</span>`;
-        }
-      }
-
-      $("#detail").innerHTML = `
-        <div class="split">
-          <div class="row">
-            <span class="pill">${r.full_name || ""}</span>
-            <span class="pill muted">${r.email || ""}</span>
-            <span class="pill muted">${r.phone || ""}</span>
-          </div>
-          <div class="row">${cvLink}</div>
-        </div>
-        <p><b>التخصص:</b> ${r.specialization || "-"}</p>
-        <p><b>المدينة:</b> ${r.city || "-"}</p>
-        <p><b>سنوات الخبرة:</b> ${r.years_experience ?? "-"}</p>
-        <p><b>طريقة التنفيذ:</b> ${(r.delivery_modes || []).join(" / ") || "-"}</p>
-        <p><b>اللغات:</b> ${(r.languages || []).join(" / ") || "-"}</p>
-        <p><b>LinkedIn:</b> ${r.linkedin_url ? `<a href="${r.linkedin_url}" target="_blank" rel="noopener">${r.linkedin_url}</a>` : "-"}</p>
-        <p><b>Website:</b> ${r.website_url ? `<a href="${r.website_url}" target="_blank" rel="noopener">${r.website_url}</a>` : "-"}</p>
-        <p><b>نبذة:</b><br>${(r.bio || "-").replaceAll("\n","<br>")}</p>
-
-        <hr style="margin:16px 0;border:0;border-top:1px solid rgba(0,0,0,.08)">
-
-        <div class="split">
-          <div class="row">
-            <span class="pill">الحالة الحالية: <b>${r.status}</b></span>
-          </div>
-          <div class="row">
-            <button class="btnx secondary" onclick="updateStatus('${id}','reviewed')">مراجعة</button>
-            <button class="btnx" onclick="updateStatus('${id}','shortlisted')">ترشيح</button>
-            <button class="btnx secondary" onclick="updateStatus('${id}','rejected')">رفض</button>
-          </div>
-        </div>
-      `;
-    }
-
-    window.updateStatus = async (id, newStatus) => {
-      const { error } = await supabase
-        .from("trainer_applications")
-        .update({ status: newStatus, reviewed_at: new Date().toISOString() })
-        .eq("id", id);
-
-      if (error){
-        alert("خطأ: " + error.message);
-        return;
-      }
-      await loadRows();
-    };
-
-    $("#btn-refresh").addEventListener("click", loadRows);
-
-    $("#login-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      $("#login-msg").textContent = "";
-      try{
-        if (!supabaseUrl || !supabaseAnonKey || supabaseAnonKey.includes("PASTE_")) {
-          throw new Error("ضعي SUPABASE_URL و SUPABASE_ANON_KEY داخل ملف supabase_config.js");
-        }
-        const fd = new FormData(e.target);
-        const email = String(fd.get("email")||"").trim();
-        const password = String(fd.get("password")||"");
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error) throw error;
-        $("#login-msg").textContent = "تم الدخول ✅";
-        await refreshAuthState();
-      }catch(err){
-        $("#login-msg").textContent = "❌ " + (err?.message || "خطأ");
-      }
-    });
-
-    $("#btn-logout").addEventListener("click", async () => {
-      await supabase.auth.signOut();
-      selectedId = null;
-      currentRows = [];
-      $("#tbl tbody").innerHTML = "";
-      $("#detail").innerHTML = `<p class="muted">اختاري طلب من الجدول لعرض التفاصيل.</p>`;
-      await refreshAuthState();
-    });
-
-    // Load on start
-    refreshAuthState();
-  </script>
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase_config.js"></script>
-
+  <script src="admin_dashboard.js"></script>
 </body>
 </html>
