@@ -5284,3 +5284,341 @@ html[dir="ltr"] #list-output li[data-i18n="list_output_3"]::after{
   font-size: 16px;           /* رجّعيها حسب حجم قائمتك */
   color: inherit;
 }
+
+
+
+/* ================================
+   FIX: Philosophy alignment in EN (LTR)
+   Put this at the VERY END of styles_v16.css
+================================= */
+
+html[dir="ltr"] .nahj-philo{
+  direction: ltr !important;
+}
+
+html[dir="ltr"] .nahj-philo-grid{
+  direction: ltr !important;
+}
+
+html[dir="ltr"] .nahj-philo-text,
+html[dir="ltr"] .nahj-philo-text p{
+  text-align: left !important;
+  direction: ltr !important;
+}
+
+/* Timeline: move the line/dots/cards to the LEFT in LTR */
+html[dir="ltr"] .nahj-timeline{
+  padding-right: 0 !important;
+  padding-left: 90px !important;
+  direction: ltr !important;
+}
+
+html[dir="ltr"] .nahj-timeline::before{
+  right: auto !important;
+  left: 44px !important;
+}
+
+html[dir="ltr"] .nahj-dot{
+  right: auto !important;
+  left: 44px !important;
+  transform: translateX(-50%) !important;
+}
+
+html[dir="ltr"] .nahj-item::after{
+  right: auto !important;
+  left: 44px !important;
+  transform: translateX(-50%) !important;
+}
+
+html[dir="ltr"] .nahj-card{
+  margin-right: 0 !important;
+  margin-left: 90px !important;
+  text-align: left !important;
+}
+
+/* Mobile LTR tweaks */
+@media (max-width: 900px){
+  html[dir="ltr"] .nahj-timeline{
+    padding-left: 70px !important;
+  }
+
+  html[dir="ltr"] .nahj-timeline::before,
+  html[dir="ltr"] .nahj-dot,
+  html[dir="ltr"] .nahj-item::after{
+    left: 30px !important;
+    right: auto !important;
+  }
+
+  html[dir="ltr"] .nahj-card{
+    margin-left: 70px !important;
+  }
+}
+
+
+
+
+/* =========================================
+   MOBILE FIX (EN/LTR): Partners centered
+   Put at the VERY END of styles_v16.css
+========================================= */
+@media (max-width: 900px){
+
+  html[dir="ltr"] .partners-container{
+    direction: ltr !important;
+    width: 100% !important;
+
+    /* أهم شي: لا يكون ملزق يمين */
+    margin: 0 auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
+    /* يرجع وسط */
+    text-align: center !important;
+    align-items: center !important; /* لو container flex */
+  }
+
+  html[dir="ltr"] .partners-text,
+  html[dir="ltr"] .partners-text h2{
+    width: 100% !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+  }
+
+  html[dir="ltr"] .partners-text a{
+    display: inline-flex !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+
+  html[dir="ltr"] .logos-wrapper{
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  html[dir="ltr"] .logos-row,
+  html[dir="ltr"] .logos-track{
+    justify-content: center !important; /* لو Flex */
+  }
+
+  /* إذا فيه أي تموضع يمين يورّثه من RTL */
+  html[dir="ltr"] .partners-container *{
+    right: auto !important;
+    left: auto !important;
+  }
+}
+
+
+
+
+/* =========================================
+   MOBILE: force lists text to FAR LEFT in EN
+========================================= */
+@media (max-width: 900px){
+
+  /* غطي أكبر عدد ممكن من الحالات داخل الكروت */
+  html[dir="ltr"] .prep-card,
+  html[dir="ltr"] .ops-card,
+  html[dir="ltr"] .out-card,
+  html[dir="ltr"] .axis-card,
+  html[dir="ltr"] .track-card{
+    text-align: left !important;
+  }
+
+  /* القوائم داخل الكروت */
+  html[dir="ltr"] .prep-card ul,
+  html[dir="ltr"] .ops-card ul,
+  html[dir="ltr"] .out-card ul,
+  html[dir="ltr"] .axis-card ul,
+  html[dir="ltr"] .track-card ul{
+    text-align: left !important;
+    list-style-position: outside !important;
+    padding-left: 18px !important;   /* يخلي النقاط على الطرف والنص أقصى يسار */
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  html[dir="ltr"] .prep-card li,
+  html[dir="ltr"] .ops-card li,
+  html[dir="ltr"] .out-card li,
+  html[dir="ltr"] .axis-card li,
+  html[dir="ltr"] .track-card li{
+    text-align: left !important;
+    justify-content: flex-start !important; /* لو li معمول flex ويتوسّط */
+    align-items: flex-start !important;
+  }
+
+  /* لو فيه عناصر داخل li متوسطة */
+  html[dir="ltr"] .prep-card li *,
+  html[dir="ltr"] .ops-card li *,
+  html[dir="ltr"] .out-card li *,
+  html[dir="ltr"] .axis-card li *,
+  html[dir="ltr"] .track-card li *{
+    text-align: left !important;
+  }
+}
+
+
+
+
+/* Mobile ONLY + English (LTR) ONLY: move "Preparation" label */
+
+
+
+
+/* MOBILE ONLY + EN (LTR) ONLY: move Operations label to the LEFT */
+@media (max-width: 900px){
+  html[dir="ltr"] #label-ops{
+    position: relative !important;
+    /* تحريك: عدّلي الأرقام */
+    transform: translate(-65px, -60px) !important; /* X يسار/يمين, Y فوق/تحت */
+    text-align: left !important;
+  }
+
+  html[dir="ltr"] #label-prep{
+    position: relative !important;
+    /* تحريك: عدّلي الأرقام */
+    transform: translate(-110px, -75px) !important; /* X يسار/يمين, Y فوق/تحت */
+    text-align: left !important;
+  }
+
+
+
+ 
+  html[dir="ltr"] #label-output{
+    position: relative !important;
+    transform: translate(0px, -75px) !important; /* X يسار/يمين, Y فوق/تحت */
+    text-align: left !important;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE + EN(LTR): move ONLY the boxes (.ops-columns) to FAR LEFT
+   (Leaves the top curve labels unchanged)
+========================================= */
+@media (max-width: 900px){
+
+  html[dir="ltr"] .ops-columns{
+    direction: ltr !important;
+    text-align: left !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    align-items: flex-start !important;   /* لو كانت flex */
+  }
+
+  /* المربعات/الأعمدة نفسها */
+  html[dir="ltr"] .ops-columns .ops-col{
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;        /* يثبتها يسار */
+    text-align: left !important;
+  }
+
+  /* القوائم داخل المربعات */
+  html[dir="ltr"] .ops-columns ul{
+    text-align: left !important;
+    direction: ltr !important;
+    list-style-position: outside !important;
+    padding-left: 18px !important;        /* مكان النقطة */
+    padding-right: 0 !important;
+    margin: 0 !important;
+  }
+
+  html[dir="ltr"] .ops-columns li{
+    text-align: left !important;
+  }
+}
+
+
+
+/* =========================================
+   MOBILE + EN (LTR)
+   LEFT align GOLD TITLES inside the boxes
+========================================= */
+@media (max-width: 768px){
+
+  /* العمود نفسه */
+  html[dir="ltr"] .ops-columns .ops-col{
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  /* العناوين الذهبية داخل المربعات */
+  html[dir="ltr"] .col-prep::before,
+  html[dir="ltr"] .col-ops::before,
+  html[dir="ltr"] .col-output::before{
+    display: block !important;          /* مهم */
+    width: 100% !important;
+    text-align: left !important;
+
+    margin-left: 0 !important;
+    margin-right: auto !important;      /* يثبتها يسار */
+
+    align-self: flex-start !important;  /* لو الأب Flex */
+       /* ❌ لا خط */
+    border: none !important;
+    text-decoration: none !important;
+
+
+  }
+}
+
+
+
+
+
+ 
+/* =========================================
+   MOBILE + EN (LTR)
+   PER-TITLE NUMERIC CONTROL (PX)
+========================================= */
+@media (max-width: 768px){
+
+  /* 🎮 تحكم لكل كلمة */
+  html[dir="ltr"]{
+    --prep-x:  20px;   --prep-y:  0px;
+    --ops-x:   20px;   --ops-y:   0px;
+    --out-x:   20px;   --out-y:   0px;
+  }
+
+  html[dir="ltr"] .ops-columns .ops-col{
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  /* Preparation */
+  html[dir="ltr"] .col-prep::before{
+    transform: translate(var(--prep-x), var(--prep-y)) !important;
+  }
+
+  /* Operations */
+  html[dir="ltr"] .col-ops::before{
+    transform: translate(var(--ops-x), var(--ops-y)) !important;
+  }
+
+  /* Outputs */
+  html[dir="ltr"] .col-output::before{
+    transform: translate(var(--out-x), var(--out-y)) !important;
+  }
+
+  /* ستايل مشترك */
+  html[dir="ltr"] .col-prep::before,
+  html[dir="ltr"] .col-ops::before,
+  html[dir="ltr"] .col-output::before{
+    display: block !important;
+    width: 100% !important;
+    text-align: left !important;
+
+    box-sizing: border-box !important;
+    padding-inline-start: 18px !important;
+    padding-inline-end: 18px !important;
+
+    border: none !important;
+    text-decoration: none !important;
+  }
+}
